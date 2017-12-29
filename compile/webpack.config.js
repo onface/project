@@ -1,0 +1,84 @@
+const path = require('path');
+const fs = require('fs');
+const getConfig = require('./getConfig.js')();
+const webpack = require('webpack');
+var userConfig = require("../config.js");
+
+ 
+// 扫描获取所有js文件列表
+const glob = require("glob");
+var entryFiles = [];
+userConfig.entry.forEach(function(item){
+	entryFiles = entryFiles.concat(glob.sync(item) || [])
+})
+var entryMap = {}
+entryFiles.forEach(function(item){
+	entryMap['./'+item] = './'+item
+})
+
+
+const webpackConfig =  {
+	entry: entryMap,
+	output: {
+		path: path.resolve(__dirname, '../output'), // 产出路径
+		publicPath: '/',
+	    filename: '[name]',
+	},
+	module: {
+	    rules: [
+		    {
+		        test: /\.css$/,
+		        use: [
+		            'vue-style-loader',
+		            'css-loader'
+		        ],
+		    },
+ 	        {
+		        test: /\.vue$/,
+		        use: 'vue-loader',
+		        exclude: /node_modules/,
+		    },
+		    {
+		        test: /\.js$/,
+		        loader: 'babel-loader',
+		        exclude: /node_modules/
+		    },
+		    {
+		    	test: /\.less$/,
+		        use: ['style-loader','css-loader','less-loader'],
+		        exclude: /node_modules/,
+		    }
+	    ],
+	},
+	/*
+		Question : [Vue warn]: You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build. (found in <Root>) 
+		Official Explanation : 运行时构建不包含模板编译器，因此不支持 template 选项，只能用 render 选项，但即使使用运行时构建，在单文件组件中也依然可以写模板，因为单文件组件的模板会在构建时预编译为 render 函数。
+		Reference : http://www.imooc.com/article/17868
+		Brief : 官方提供了多版本 , 默认使用的不是开发版 , 添加别名解决这一问题
+	*/
+	resolve: {
+		alias: {
+			'vue': 'vue/dist/vue.js'
+		},
+		extensions: ['*', '.js', '.vue', '.json'] // 配置默认扩展名 
+	},
+	devServer:{
+		historyApiFallback:true,
+		contentBase: path.join(__dirname, "../output"),
+	    port:getConfig.wepbackServerPort,
+	    quiet: false, // true:控制台只输出第一次编译的信息，当你保存后再次编译的时候不会输出任何内容，包括错误和警告
+		noInfo: false, // 命令行是否打印编译信息
+	    compress: true, // true的时候对所有的服务器资源采用gzip压缩
+	    overlay: true, // 在编译出错的时候，在浏览器页面上显示错误
+	    // stats: "errors-only", // 命令行只打印错误
+	    hot: true,
+	    inline:true
+	},
+	plugins:[
+        new webpack.HotModuleReplacementPlugin() // enable HMR globally
+    ],
+	devtool: '#eval-source-map'
+};
+
+
+module.exports = webpackConfig
