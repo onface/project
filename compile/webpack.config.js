@@ -31,9 +31,25 @@ const webpackConfig =  {
 	},
 	module: {
 	    rules: [
+		    {
+		        test: /\.json$/,
+		        loader: "json-loader"
+		    },
 			{
 		        test: /[^m]\.css$/,
-		        loader: ["style-loader","css-loader"]
+		        // loader: ["style-loader","css-loader","postcss-loader"]
+		        use:[
+			        'style-loader',
+			        'css-loader',
+			        {
+			            loader:"postcss-loader",
+			            options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+			                plugins: (loader) => [
+			                    require('autoprefixer')(), //CSS浏览器兼容
+			                ]
+			            }
+			        }
+		        ]
 		    },
  	        {
 		        test: /\.vue$/,
@@ -56,7 +72,15 @@ const webpackConfig =  {
 		        loader: [
 			        'style-loader',
 			        'css-loader?modules&localIdentName=[local]__[hash:base64:5]',
-			        'less-loader'
+			        'less-loader',
+			        {
+			            loader:"postcss-loader",
+			            options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+			                plugins: (loader) => [
+			                    require('autoprefixer')(), //CSS浏览器兼容
+			                ]
+			            }
+			        }
 		        ],
 		        exclude: /node_modules/,
 		    },
@@ -88,6 +112,7 @@ const webpackConfig =  {
 	    overlay: true, // 在编译出错的时候，在浏览器页面上显示错误
 	    // stats: "errors-only", // 命令行只打印错误
 	    hot: true,
+        colors: true,
 	    // inline:true
 	},
 	plugins:[
