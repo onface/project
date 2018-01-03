@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const getConfig = require('./getConfig.js')();
 const webpack = require('webpack');
-var userConfig = require("../config.js");
+var userConfig = require("../compile.js");
 
  
 // 扫描获取所有js文件列表
@@ -18,7 +18,7 @@ entryFiles.forEach(function(filePath){
 		'webpack-hot-middleware/client'
 	]
 })
-console.log('entryMap :',entryMap)
+// console.log('entryMap :',entryMap)
 
 
 const webpackConfig =  {
@@ -26,11 +26,15 @@ const webpackConfig =  {
 	output: {
 		path: path.resolve(__dirname, '../output'), // 产出路径
 		publicPath: '/',
-	    chunkFilename: '__chunk/[name]-[id]-[hash]-chunk.js',
+	    chunkFilename: '__chunk/[name]-[id]-chunk.js', // online : chunkFilename: '__chunk/[name]-[id]-[hash]-chunk.js', 
 	    filename: '[name]',
 	},
 	module: {
 	    rules: [
+			{
+		        test: /[^m]\.css$/,
+		        loader: ["style-loader","css-loader"]
+		    },
  	        {
 		        test: /\.vue$/,
 		        use: 'vue-loader',
@@ -39,13 +43,27 @@ const webpackConfig =  {
 		    {
 		        test: /\.js$/,
 		        loader: 'babel-loader',
+		        options: userConfig.babel ,
 		        exclude: /node_modules/
 		    },
 		    {
-		    	test: /\.less$/,
-		        use: ['style-loader','css-loader','less-loader'],
+		    	test: /[^m]\.less$/,
+		        loader: ['style-loader','css-loader','less-loader'],
 		        exclude: /node_modules/,
-		    }
+		    },
+		    {
+		    	test:userConfig.cssModules.less,
+		        loader: [
+			        'style-loader',
+			        'css-loader?modules&localIdentName=[local]__[hash:base64:5]',
+			        'less-loader'
+		        ],
+		        exclude: /node_modules/,
+		    },
+			{
+		        test: userConfig.cssModules.css,
+		        loader: "style-loader!css-loader?modules&localIdentName=[local]__[hash:base64:5]"
+		    },
 	    ],
 	},
 	/*
@@ -65,9 +83,9 @@ const webpackConfig =  {
 		// contentBase: path.join(__dirname, "../output"),
 	    // port:getConfig.wepbackServerPort,
 	    // quiet: false, // true:控制台只输出第一次编译的信息，当你保存后再次编译的时候不会输出任何内容，包括错误和警告
-		// noInfo: false, // 命令行是否打印编译信息
+		// noInfo: true, // false : 命令行打印编译信息
 	    // compress: true, // true的时候对所有的服务器资源采用gzip压缩
-	    // overlay: true, // 在编译出错的时候，在浏览器页面上显示错误
+	    overlay: true, // 在编译出错的时候，在浏览器页面上显示错误
 	    // stats: "errors-only", // 命令行只打印错误
 	    hot: true,
 	    // inline:true

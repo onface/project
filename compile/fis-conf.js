@@ -5,7 +5,7 @@ const less = require('less');
 const lodash = require('lodash')
 const path = require('path');
 const json5 = require('json5');
-var userConfig = require("../config.js");
+var userConfig = require("../compile.js");
 const glob = require("glob");
 const minimatch = require("minimatch")
 
