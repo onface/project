@@ -1,4 +1,4 @@
-console.log('/m/example_vue/entry.vue.js');
+console.log('/m/example_vue/entry.js');
 
 import Vue from 'vue';
 import app from './index.vue';

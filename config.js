@@ -5,7 +5,7 @@ const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 module.exports = {
 	// 需编译的文件入口
 	entry: [
-		'{view_,m}**/**/*entry.{vue.js,js,vue}'
+		'{view_,m}**/**/*{entry.js,.vue}'
 	],
 	vendorFile: ['m/base/rem/meta.js'] , // 直接产出不需编译
 	relative: false ,  // true : 让fis3产出能够支持相对路径

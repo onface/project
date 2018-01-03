@@ -123,10 +123,10 @@ fis.match('**.md', {
                 }
             )
             // 添加livere监听
-          	// content +=  `<script>
-        			// 	  document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
-        			// 	  ':`+getConfig.liverePort+`/livereload.js?snipver=1"></' + 'script>')
-        			// 	</script>`
+            // content +=  `<script>
+                    //    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+                    //    ':`+getConfig.liverePort+`/livereload.js?snipver=1"></' + 'script>')
+                    //  </script>`
             return html
         },
         htmlEntryScriptParser

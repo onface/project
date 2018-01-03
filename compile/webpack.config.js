@@ -8,13 +8,17 @@ var userConfig = require("../config.js");
 // 扫描获取所有js文件列表
 const glob = require("glob");
 var entryFiles = [];
-userConfig.entry.forEach(function(item){
-	entryFiles = entryFiles.concat(glob.sync(item) || [])
+userConfig.entry.forEach(function(fileReg){
+	entryFiles = entryFiles.concat(glob.sync(fileReg) || [])
 })
 var entryMap = {}
-entryFiles.forEach(function(item){
-	entryMap['./'+item] = './'+item
+entryFiles.forEach(function(filePath){
+	entryMap[filePath] = [
+		'./' + filePath,
+		'webpack-hot-middleware/client'
+	]
 })
+console.log('entryMap :',entryMap)
 
 
 const webpackConfig =  {
@@ -22,17 +26,11 @@ const webpackConfig =  {
 	output: {
 		path: path.resolve(__dirname, '../output'), // 产出路径
 		publicPath: '/',
+	    chunkFilename: '__chunk/[name]-[id]-[hash]-chunk.js',
 	    filename: '[name]',
 	},
 	module: {
 	    rules: [
-		    {
-		        test: /\.css$/,
-		        use: [
-		            'vue-style-loader',
-		            'css-loader'
-		        ],
-		    },
  	        {
 		        test: /\.vue$/,
 		        use: 'vue-loader',
@@ -60,24 +58,29 @@ const webpackConfig =  {
 		alias: {
 			'vue': 'vue/dist/vue.js'
 		},
-		extensions: ['*', '.js', '.vue', '.json'] // 配置默认扩展名 
+		// extensions: ['*', '.js', '.vue', '.json'] // 配置默认扩展名 
 	},
 	devServer:{
 		historyApiFallback:true,
-		contentBase: path.join(__dirname, "../output"),
-	    port:getConfig.wepbackServerPort,
-	    quiet: false, // true:控制台只输出第一次编译的信息，当你保存后再次编译的时候不会输出任何内容，包括错误和警告
-		noInfo: false, // 命令行是否打印编译信息
-	    compress: true, // true的时候对所有的服务器资源采用gzip压缩
-	    overlay: true, // 在编译出错的时候，在浏览器页面上显示错误
+		// contentBase: path.join(__dirname, "../output"),
+	    // port:getConfig.wepbackServerPort,
+	    // quiet: false, // true:控制台只输出第一次编译的信息，当你保存后再次编译的时候不会输出任何内容，包括错误和警告
+		// noInfo: false, // 命令行是否打印编译信息
+	    // compress: true, // true的时候对所有的服务器资源采用gzip压缩
+	    // overlay: true, // 在编译出错的时候，在浏览器页面上显示错误
 	    // stats: "errors-only", // 命令行只打印错误
 	    hot: true,
-	    inline:true
+	    // inline:true
 	},
 	plugins:[
-        new webpack.HotModuleReplacementPlugin() // enable HMR globally
+        // enable HMR globally
+        new webpack.HotModuleReplacementPlugin(),
+		// prints more readable module names in the browser console on HMR updates
+		new webpack.NamedModulesPlugin(),
+		// do not emit compiled assets that include errors
+		new webpack.NoEmitOnErrorsPlugin()
     ],
-	devtool: '#eval-source-map'
+	// devtool: '#eval-source-map'
 };
 
 
