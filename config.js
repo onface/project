@@ -7,6 +7,9 @@ module.exports = {
 	entry: [
 		'{view_,m}**/**/*{entry.js,.vue}'
 	],
+	cssModules: {
+		file: '**/**-m.less'
+	},
 	vendorFile: ['m/base/rem/meta.js'] , // 直接产出不需编译
 	relative: false ,  // true : 让fis3产出能够支持相对路径
 	moduleTemplateDefaultData:{
@@ -15,11 +18,11 @@ module.exports = {
 	less: {
 		plugins: [
 			// less中支持自定义函数
-            new LessPluginFunctions() , 
-            // 浏览器私有属性前缀补全 
+            new LessPluginFunctions() ,
+            // 浏览器私有属性前缀补全
             new LessPluginAutoPrefix({
                 browsers: ["not ie < 8"]
-            }) 
+            })
         ]
 	}
 }

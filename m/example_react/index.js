@@ -7,5 +7,5 @@ class ExampleReact extends React.Component {
     )
   }
 }
-
-module.exports = require('react-hot-loader').hot(module)(ExampleReact);
+ExampleReact = require('react-hot-loader').hot(module)(ExampleReact);
+module.exports = ExampleReact
