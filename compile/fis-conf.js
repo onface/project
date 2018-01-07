@@ -65,7 +65,7 @@ fis.match('**.md', {
                     compile: {
                         'code': function(data, options, info){
                             data = json5.parse(data)
-                            data.lang = data.lang || 'js'
+                            data.lang = data.lang || data.file.replace(/.+\.(.+)$/,'$1') || 'js'
                             var fullpath = path.join(path.dirname(info.filepath),data.file)
                             info.deps = info.deps || []
                             info.deps.push(fullpath)
