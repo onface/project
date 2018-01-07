@@ -131,21 +131,9 @@ fis.media('dev').match('*.{md,html}', {
     postprocessor: function (content, file) {
        if (fis.project.currentMedia() === 'dev') {
            if (content.indexOf('onface-project-livereload') === -1) {
-               var livereloadScriptTag = ''
-               var url = [
-                   "'http://' + (location.host || 'localhost').split(':')[0] + ':",
-                   config.livereloadServerPort,
-                   "/livereload.js?snipver=1'"
-               ].join('')
-               var livereloadScriptTag = `
-                    <script data-onface-project-livereload="true" >
-                   !(function(){
-                       var livereloadjsNode = document.createElement('scr'+'ipt')
-                       livereloadjsNode.setAttribute('src', ${url})
-                       document.body.append(livereloadjsNode)
-                   })()
-                   </script>
-                `
+               var livereloadScriptTag = `<script>
+                           document.write('<scr'+ 'ipt data-onface-project-livereload="true" src="${'http://127.0.0.1:' + config.livereloadServerPort + '/livereload.js?snipver=1'}"></scr' + 'ipt>')
+                       </script>`
                content = content.replace(/<\/\s*body>/, livereloadScriptTag + '</body>')
            }
        }
