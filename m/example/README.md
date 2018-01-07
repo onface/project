@@ -5,3 +5,5 @@
 	file: './entry.js'
 }
 ````
+
+![](./avatar.jpg)

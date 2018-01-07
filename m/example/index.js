@@ -1,3 +1,3 @@
 module.exports = function log (message){
-	console.log('log:', messgae)
+	console.log('log:', message)
 }

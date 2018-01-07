@@ -1,9 +1,19 @@
 {
 	"name": "project",
 	"scripts": {
+		"icon": "node ./compile/iconfont.js",
 		"dev": "fis3 release -w -d ./output  -r ./ -f compile/fis-conf.js",
 		"js": "node ./compile/webpack-dev-server.js",
-		"s": "nodemon -w mock/default/ mock/default/index.js"
+		"s": "nodemon -w mock/default/ mock/default/index.js",
+		"dev:m": "compile=mobile npm run dev",
+		"js:m": "compile=mobile npm run js",
+		"s:m": "compile=mobile nodemon -w mock/mobile/ mock/mobile/index.js",
+		"online:1": "rm -rf output && fis3 release online1 -d ./output -r ./ -f compile/fis-conf.js",
+		"online:2": "webpack --progress  --config ./compile/webpack.online.config.js",
+		"online:3": "fis3 release online3  -d ./output_online  -r ./output -f compile/fis-conf.js",
+		"online:4": "rm -rf output && mv output_online output",
+		"online": "npm run online:1 && npm run online:2 && npm run online:3 && npm run online:4",
+		"online:m": "compile=mobile npm run online"
 	},
 	"devDependencies": {
 		"babel": "^6.23.0",
@@ -61,6 +71,7 @@
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
 		"react-hot-loader": "^4.0.0-beta.8",
+		"uglifyjs-webpack-plugin": "^1.1.6",
 		"vue": "^2.5.9",
 		"vue-loader": "^13.5.0",
 		"webpack-dev-middleware": "^2.0.3",

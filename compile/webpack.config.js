@@ -20,16 +20,15 @@ entryFiles.forEach(function(filePath){
 const webpackConfig =  {
 	entry: entryMap,
 	output: {
-		path: path.resolve(__dirname, '../output'), // 产出路径
+		path: path.resolve(__dirname, '../output'),
 		publicPath: '/',
-	    chunkFilename: '__chunk/[id].js', // online : chunkFilename: '__chunk/[name]-[id]-[hash]-chunk.js',
+	    chunkFilename: '__chunk/[id].js',
 	    filename: '[name]',
 	},
 	module: {
 	    rules: [
 			{
 		        test: /[^m]\.css$/,
-		        // loader: ["style-loader","css-loader","postcss-loader"]
 		        use:[
 			        'style-loader',
 			        'css-loader',

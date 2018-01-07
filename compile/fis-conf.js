@@ -8,13 +8,30 @@ const glob = require("glob")
 const minimatch = require("minimatch")
 const isAbsoluteUrl = require('is-absolute-url')
 const util = require("./util")
-if (config.user.relative) {
+if (config.user.online.relative) {
     fis.hook(require('fis3-hook-relative'))
     fis.match('**',{
         relative: true
     })
 }
+
+fis.match('**.js',{
+    release:false
+})
+fis.match('{view,view**}/**', {
+    release: false
+})
+
+// suffix: "" "_mobile"
+let suffix = config.mode? '_' + config.mode: ''
+fis.match(`view${suffix}/**`, {
+    release: true
+})
+
 const htmlEntryScriptParser = function (content, file) {
+    if (fis.project.currentMedia() !== 'dev'){
+        return content
+    }
     var matchScript = /\<script(.*)?src="(.*)?"\s*\>\<\/script\>/g
     return content.replace(matchScript, function (source, attr, src ) {
         if (isAbsoluteUrl(src)) {
@@ -40,7 +57,7 @@ fis.match('**.md', {
             var html = markrun(
                 content,
                 {
-                    templateDefaultData: config.user.moduleTemplateDefaultData ,
+                    templateDefaultData: config.user.moduleTemplateDefaultData,
                     template: function (data) {
                         var templateContent = fs.readFileSync(path.join(__dirname, '../m/template.html')).toString()
                         return templateContent
@@ -149,9 +166,9 @@ var ignoreFile = [
     'm/template.html',
     '**.vue',
     'deploy/**',
-    'compile/**'
-    // ,
-    // '*.*'
+    'compile/**',
+    'mock/**',
+    'package.json',
 ]
 ignoreFile.forEach(function (glob) {
     fis.match(glob, {
@@ -159,11 +176,27 @@ ignoreFile.forEach(function (glob) {
     })
 })
 
-fis.match('**.js',{
-    release:false
-})
+
 config.user.vendorFile.forEach(function (glob) {
     fis.match(glob, {
         release: true
     }, 999)
+})
+config.user.fis(fis)
+
+fis.media('online1').match('**.md', {
+    release: false
+}).match('m/**.{less,css}', {
+    release: false
+})
+// var moduleJSandCSSGlob = 'm/**/**.{less,css,js}'
+// fis.media('online1').match(moduleJSandCSSGlob, {
+//     release: false
+// })
+// fis.media('online3').match(moduleJSandCSSGlob, {
+//     release: false
+// })
+fis.media('online3').match('**', {
+    useHash: config.user.online.hash,
+    domain: config.user.online.domain.replace(/\/$/,'')
 })

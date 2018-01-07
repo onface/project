@@ -2,6 +2,9 @@ var packageJson = require('../package.json')
 var toPort = require('hash-to-port');
 var extend = require('extend');
 var compileMode = process.env.compile || ''
+if (compileMode) {
+	compileMode = '-' + compileMode
+}
 compileMode = 'compile' + compileMode + '.js'
 var path = require('path')
 module.exports = function () {
@@ -10,7 +13,8 @@ module.exports = function () {
 		mockServerPort:toPort('mockServerPort' + compileMode + packageJson.name),
 		wepbackServerPort:toPort('wepbackServerPort' + compileMode + packageJson.name),
 		renderServerPort:toPort('renderServerPort' + compileMode + packageJson.name),
-		user: require(path.join(__dirname, '../', compileMode))
+		user: require(path.join(__dirname, '../', compileMode)),
+		mode: process.env.compile || ''
 	}
 	config.mockSettings = function (settings) {
 		var webpackServerUrl = 'http://127.0.0.1:' + config.wepbackServerPort
@@ -30,7 +34,7 @@ module.exports = function () {
 			   data: {},
 			   templateDir: './output/'
 		   },
-		   static: path.join(__dirname, '../../output'),
+		   static: './output',
 		},settings)
 	}
 	return config
