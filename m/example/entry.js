@@ -1,5 +1,2 @@
-import con from './index.js';
-
-con();
-
-console.log('/m/example/entry.js');
+import log from './index.js';
+log('abc')

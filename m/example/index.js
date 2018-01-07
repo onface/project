@@ -1,3 +1,3 @@
-module.exports = function(){
-	console.log('/m/example/index.js');
+module.exports = function log (message){
+	console.log('log:', messgae)
 }

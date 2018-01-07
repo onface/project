@@ -15,7 +15,7 @@ module.exports = {
 	},
 	relative: false ,  // true : 让fis3产出能够支持相对路径
 	moduleTemplateDefaultData:{
-		type:'pc', // 模块开发模板预览 默认类型pc
+		type:'view',
 	},
 	less: {
 		plugins: [
