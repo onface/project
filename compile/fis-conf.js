@@ -147,9 +147,6 @@ fis.media('dev').match('*.{md,html}', {
                    })()
                    </script>
                 `
-               .replace(/^[^\/]+\/\*!?/, '')
-               .replace(/\*\/[^\/]+$/, '')
-               .replace(/^[\s\xA0]+/, '').replace(/[\s\xA0]+$/, '') // .trim()
                content = content.replace(/<\/\s*body>/, livereloadScriptTag + '</body>')
            }
        }
