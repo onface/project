@@ -32,7 +32,6 @@ module.exports = {
 			"es2015"
 		],
 		"plugins": [
-			"react-hot-loader/babel",
 			[
 				 "transform-react-jsx",
 				 {"pragma": "require(\"react\").createElement"}

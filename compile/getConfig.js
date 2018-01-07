@@ -5,9 +5,10 @@ compileMode = 'compile' + compileMode + '.js'
 var path = require('path')
 module.exports = function () {
 	return {
-		liverePort:toPort('liverePort' + compileMode + packageJson.name),
+		livereloadServerPort:toPort('livereloadServerPort' + compileMode + packageJson.name),
 		mockServerPort:toPort('mockServerPort' + compileMode + packageJson.name),
 		wepbackServerPort:toPort('wepbackServerPort' + compileMode + packageJson.name),
+		renderServerPort:toPort('renderServerPort' + compileMode + packageJson.name),
 		user: require(path.join(__dirname, '../', compileMode))
 	}
 }

@@ -126,6 +126,36 @@ fis.match('**.html', {
         htmlEntryScriptParser
     ]
 })
+
+fis.media('dev').match('*.{md,html}', {
+    postprocessor: function (content, file) {
+       content = content.replace(/_src=(['"].*?.js['"])/g, 'src=$1')
+       if (fis.project.currentMedia() === 'dev') {
+           if (content.indexOf('onface-project-livereload') === -1) {
+               var livereloadScriptTag = ''
+               var url = [
+                   "'http://' + (location.host || 'localhost').split(':')[0] + ':",
+                   config.livereloadServerPort,
+                   "/livereload.js?snipver=1'"
+               ].join('')
+               var livereloadScriptTag = `
+                    <script data-onface-project-livereload="true" >
+                   !(function(){
+                       var livereloadjsNode = document.createElement('scr'+'ipt')
+                       livereloadjsNode.setAttribute('src', ${url})
+                       document.body.append(livereloadjsNode)
+                   })()
+                   </script>
+                `
+               .replace(/^[^\/]+\/\*!?/, '')
+               .replace(/\*\/[^\/]+$/, '')
+               .replace(/^[\s\xA0]+/, '').replace(/[\s\xA0]+$/, '') // .trim()
+               content = content.replace(/<\/\s*body>/, livereloadScriptTag + '</body>')
+           }
+       }
+       return content
+   }
+})
 fis.match('**.less', {
     parser: fis.plugin('less-2.x',config.user.less),
     rExt:'css'

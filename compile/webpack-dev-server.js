@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const compiler = webpack(require('./webpack.config.js'));
-const getConfig = require('./getConfig.js')();
+const config = require('./getConfig.js')();
 const path = require('path');
 const express = require('express');
 const app = express();
@@ -13,5 +13,5 @@ app.use(require("webpack-dev-middleware")(compiler, {
 }));
 app.use(require("webpack-hot-middleware")(compiler))
 
-app.listen(getConfig.wepbackServerPort);
-console.log('http://localhost:'+getConfig.wepbackServerPort)
+app.listen(config.wepbackServerPort);
+console.log('http://localhost:' + config.wepbackServerPort)

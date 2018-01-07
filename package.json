@@ -2,7 +2,8 @@
 	"name": "project",
 	"scripts": {
 		"dev": "fis3 release -w -d ./output  -r ./ -f compile/fis-conf.js",
-		"s": "node ./compile/webpack-dev-server.js"
+		"js": "node ./compile/webpack-dev-server.js",
+		"s": "nodemon -w mock/default/ mock/default/index.js"
 	},
 	"devDependencies": {
 		"babel": "^6.23.0",
@@ -54,6 +55,7 @@
 		"classnames": "^2.2.5",
 		"is-absolute-url": "^2.1.0",
 		"jquery": "^3.2.1",
+		"postcss-loader": "^2.0.10",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
 		"react-hot-loader": "^4.0.0-beta.8",
