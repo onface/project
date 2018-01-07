@@ -13,7 +13,8 @@
 		"online:3": "fis3 release online3  -d ./output_online  -r ./output -f compile/fis-conf.js",
 		"online:4": "rm -rf output && mv output_online output",
 		"online": "npm run online:1 && npm run online:2 && npm run online:3 && npm run online:4",
-		"online:m": "compile=mobile npm run online"
+		"online:m": "compile=mobile npm run online",
+		"dp":"sh ./deploy/svn.sh"
 	},
 	"devDependencies": {
 		"babel": "^6.23.0",
