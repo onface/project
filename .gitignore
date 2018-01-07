@@ -1,3 +1,4 @@
 node_modules
 output/
 npm-debug.log
+deploy/_uglify_cache/
