@@ -1,5 +1,6 @@
 var packageJson = require('../package.json')
 var toPort = require('hash-to-port');
+var extend = require('extend');
 var compileMode = process.env.compile || ''
 compileMode = 'compile' + compileMode + '.js'
 var path = require('path')
@@ -14,7 +15,7 @@ module.exports = function () {
 	config.mockSettings = function (settings) {
 		var webpackServerUrl = 'http://127.0.0.1:' + config.wepbackServerPort
 		var renderServerUrl = 'http://127.0.0.1:' + config.renderServerPort
-		return {
+		return extend(true,{
 			port: config.mockServerPort,
 			proxy404: webpackServerUrl,
 			connect: function (req, res, next) {
@@ -30,7 +31,7 @@ module.exports = function () {
 			   templateDir: './output/'
 		   },
 		   static: path.join(__dirname, '../../output'),
-		}
+		},settings)
 	}
 	return config
 }
