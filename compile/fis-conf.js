@@ -129,7 +129,6 @@ fis.match('**.html', {
 
 fis.media('dev').match('*.{md,html}', {
     postprocessor: function (content, file) {
-       content = content.replace(/_src=(['"].*?.js['"])/g, 'src=$1')
        if (fis.project.currentMedia() === 'dev') {
            if (content.indexOf('onface-project-livereload') === -1) {
                var livereloadScriptTag = ''

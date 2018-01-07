@@ -5,7 +5,7 @@ const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 module.exports = {
 	// 需编译的文件入口
 	entry: [
-		'{view,view_,m}**/**/**entry.js'
+		'{view,m}**/**/**entry.js'
 	],
 	vendorFile: ['m/base/rem/meta.js'] , // 直接产出不需编译
 	// 需要css module的文件
