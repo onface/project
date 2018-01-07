@@ -2652,7 +2652,7 @@ iqrcode@0.0.2:
   version "0.0.2"
   resolved "http://registry.npm.taobao.org/iqrcode/download/iqrcode-0.0.2.tgz#f6818213fd359f8dd2a4d4174b222c118bdfba63"
 
-is-absolute-url@^2.0.0:
+is-absolute-url@^2.0.0, is-absolute-url@^2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/is-absolute-url/download/is-absolute-url-2.1.0.tgz#50530dfb84fcc9aa7dbe7852e83a37b93b9f2aa6"
 
