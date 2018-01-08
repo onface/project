@@ -1,38 +1,31 @@
 const webpack = require('webpack')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const glob = require("glob")
-
+const path = require('path')
+const webpackConfig = require('./webpack.config.js')
 var config = require('./getConfig')()
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-// 扫描获取所有js文件列表
-var entryFiles = []
-config.user.entry.forEach(function(fileReg){
-    entryFiles = entryFiles.concat(glob.sync(fileReg) || [])
-})
-entryFiles = entryFiles.filter(function(filePath){
-    return !/^m\//.test(filePath)
-})
-var entryMap = {}
-entryFiles.forEach(function(filePath){
-    entryMap[filePath] = ['./' + filePath]
+Object.keys(webpackConfig.entry).forEach(function (key) {
+    if (/^m\//.test(key)) {
+        delete webpackConfig.entry[key]
+    }
+    else {
+        webpackConfig.entry[key] = webpackConfig.entry[key].filter(function (key) {
+            return key !== 'webpack-hot-middleware/client'
+        })
+    }
 })
 
-console.log(entryMap)
+webpackConfig.output.publicPath = config.domain
+webpackConfig.output.chunkFilename = `__chunk/[id]${config.user.online.hash?'-[hash]':''}.js'`
 
-var webpackConfig = require('./webpack.config.js')({
-    entry: entryMap,
-    lastPlugins: [
+webpackConfig.plugins = [
+        new webpack.NamedModulesPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new UglifyJsPlugin({
             cache: true
         })
-    ],
-    output : {
-        publicPath: config.domain,
-        chunkFilename: `__chunk/[id]${config.user.online.hash?'-[hash]':''}.js'`,
-    }
-})
-
+    ]
 module.exports = webpackConfig

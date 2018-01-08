@@ -12,6 +12,12 @@ module.exports = {
 		less:/\-m\.less$/,
 		css:/\-m\.css$/,
 	},
+	externals: {
+	   'jquery': 'jQuery',
+	   'react': 'React',
+	   'react-dom': 'ReactDOM',
+	   'vue': 'Vue'
+    },
 	fis: function (fis) {
 
 	},

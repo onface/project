@@ -189,14 +189,25 @@ fis.media('online1').match('**.md', {
 }).match('m/**.{less,css}', {
     release: false
 })
-// var moduleJSandCSSGlob = 'm/**/**.{less,css,js}'
-// fis.media('online1').match(moduleJSandCSSGlob, {
-//     release: false
-// })
-// fis.media('online3').match(moduleJSandCSSGlob, {
-//     release: false
-// })
+config.user.entry.some(function(glob){
+    fis.media('online1').match(glob, {
+        release: true
+    })
+    fis.media('online3').match(glob, {
+        release: true
+    })
+})
+fis.media('online1')
+    .match('**/fis-source-map.json', {
+        parser: [
+            function (content) {
+                return content.replace(/__REPLACE_RESOURCE_MAP__/g, '__RESOURCE_MAP__')
+            }
+        ]
+    })
 fis.media('online3').match('**', {
     useHash: config.user.online.hash,
     domain: config.user.online.domain.replace(/\/$/,'')
+}).match('*.{css,less}', {
+    optimizer: fis.plugin('clean-css')
 })

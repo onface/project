@@ -4,17 +4,17 @@
 		"icon": "node ./compile/iconfont.js",
 		"dev": "rm -rf output && fis3 release -w -d ./output  -r ./ -f compile/fis-conf.js",
 		"js": "node ./compile/webpack-dev-server.js",
-		"s": "nodemon -w mock/default/ mock/default/index.js",
+		"s": "node compile/open && nodemon -w mock/default/ mock/default/index.js",
 		"dev:m": "compile=mobile npm run dev",
 		"js:m": "compile=mobile npm run js",
-		"s:m": "compile=mobile nodemon -w mock/mobile/ mock/mobile/index.js",
+		"s:m": "compile=mobile node compile/open && nodemon -w mock/mobile/ mock/mobile/index.js",
 		"online:1": "rm -rf output && fis3 release online1 -d ./output -r ./ -f compile/fis-conf.js",
 		"online:2": "webpack --progress  --config ./compile/webpack.online.config.js",
 		"online:3": "fis3 release online3  -d ./output_online  -r ./output -f compile/fis-conf.js",
 		"online:4": "rm -rf output && mv output_online output",
 		"online": "npm run online:1 && npm run online:2 && npm run online:3 && npm run online:4",
 		"online:m": "compile=mobile npm run online",
-		"dp":"sh ./deploy/svn.sh"
+		"dp": "sh ./deploy/svn.sh"
 	},
 	"devDependencies": {
 		"babel": "^6.23.0",
@@ -65,9 +65,11 @@
 	},
 	"dependencies": {
 		"classnames": "^2.2.5",
+		"expose-loader": "^0.7.4",
 		"file-loader": "^1.1.6",
 		"is-absolute-url": "^2.1.0",
 		"jquery": "^3.2.1",
+		"open": "^0.0.5",
 		"postcss-loader": "^2.0.10",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
