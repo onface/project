@@ -14,8 +14,10 @@ module.exports = function () {
 		wepbackServerPort:toPort('wepbackServerPort' + compileMode + packageJson.name),
 		renderServerPort:toPort('renderServerPort' + compileMode + packageJson.name),
 		user: require(path.join(__dirname, '../', compileMode)),
-		mode: process.env.compile || ''
+		mode: process.env.compile || '',
 	}
+	var outputSubDir = config.mode || 'default'
+	config.outputDir = path.join(__dirname, '../', 'output', outputSubDir)
 	config.mockSettings = function (settings) {
 		var webpackServerUrl = 'http://127.0.0.1:' + config.wepbackServerPort
 		var renderServerUrl = 'http://127.0.0.1:' + config.renderServerPort
@@ -32,9 +34,9 @@ module.exports = function () {
 		   view: {
 			   server: renderServerUrl,
 			   data: {},
-			   templateDir: './output/'
+			   templateDir: './output/' + outputSubDir + '/'
 		   },
-		   static: './output',
+		   static: './output/' + outputSubDir,
 		},settings)
 	}
 	return config

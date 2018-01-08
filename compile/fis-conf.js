@@ -15,12 +15,15 @@ if (config.user.online.relative) {
     })
 }
 
-fis.match('{view,view**}/**', {
+fis.match('view/**', {
     release: false
 })
-
+fis.match('view_**/**', {
+    release: false
+})
 // suffix: "" "_mobile"
 let suffix = config.mode? '_' + config.mode: ''
+console.log(`compile: view${suffix}/**`)
 fis.match(`view${suffix}/**`, {
     release: true
 })
@@ -210,4 +213,10 @@ fis.media('online3').match('**', {
     domain: config.user.online.domain.replace(/\/$/,'')
 }).match('*.{css,less}', {
     optimizer: fis.plugin('clean-css')
+})
+
+fis.media('dev').match('*', {
+    deploy: fis.plugin('local-deliver', {
+        to: config.outputDir
+    })
 })
