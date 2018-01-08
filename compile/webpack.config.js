@@ -17,6 +17,10 @@ entryFiles.forEach(function(filePath){
 		'webpack-hot-middleware/client'
 	]
 })
+if (JSON.stringify(entryMap) === '{}') {
+	console.log('⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄')
+	throw new Error(`compile/webpack.config.js: must have entry\r\n entry: ${JSON.stringify(config.user.entry)}`)
+}
 const webpackConfig =  {
 	entry: entryMap,
 	output: {
