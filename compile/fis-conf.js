@@ -15,9 +15,6 @@ if (config.user.online.relative) {
     })
 }
 
-fis.match('**.js',{
-    release:false
-})
 fis.match('{view,view**}/**', {
     release: false
 })
@@ -26,6 +23,9 @@ fis.match('{view,view**}/**', {
 let suffix = config.mode? '_' + config.mode: ''
 fis.match(`view${suffix}/**`, {
     release: true
+})
+fis.match('**.js',{
+    release:false
 })
 
 const htmlEntryScriptParser = function (content, file) {

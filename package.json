@@ -2,7 +2,7 @@
 	"name": "project",
 	"scripts": {
 		"icon": "node ./compile/iconfont.js",
-		"dev": "fis3 release -w -d ./output  -r ./ -f compile/fis-conf.js",
+		"dev": "rm -rf output && fis3 release -w -d ./output  -r ./ -f compile/fis-conf.js",
 		"js": "node ./compile/webpack-dev-server.js",
 		"s": "nodemon -w mock/default/ mock/default/index.js",
 		"dev:m": "compile=mobile npm run dev",
