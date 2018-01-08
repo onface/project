@@ -1,23 +1,17 @@
 var packageJson = require('../package.json')
 var toPort = require('hash-to-port');
 var extend = require('extend');
-var compileMode = process.env.compile || ''
-if (compileMode) {
-	compileMode = '-' + compileMode
-}
-compileMode = 'compile' + compileMode + '.js'
 var path = require('path')
 module.exports = function () {
+	var mode = process.env.compile?process.env.compile: 'default'
 	var config = {
-		livereloadServerPort:toPort('livereloadServerPort' + compileMode + packageJson.name),
-		mockServerPort:toPort('mockServerPort' + compileMode + packageJson.name),
-		wepbackServerPort:toPort('wepbackServerPort' + compileMode + packageJson.name),
-		renderServerPort:toPort('renderServerPort' + compileMode + packageJson.name),
-		user: require(path.join(__dirname, '../', compileMode)),
-		mode: process.env.compile || '',
+		mode: mode,
+		livereloadServerPort:toPort('livereloadServerPort' + packageJson.name),
+		mockServerPort:toPort('mockServerPort' + mode + packageJson.name),
+		wepbackServerPort:toPort('wepbackServerPort' + packageJson.name),
+		renderServerPort:toPort('renderServerPort' + packageJson.name),
+		user: require(path.join(__dirname, '../compile.js'))
 	}
-	var outputSubDir = config.mode || 'default'
-	config.outputDir = path.join(__dirname, '../', 'output', outputSubDir)
 	config.mockSettings = function (settings) {
 		var webpackServerUrl = 'http://127.0.0.1:' + config.wepbackServerPort
 		var renderServerUrl = 'http://127.0.0.1:' + config.renderServerPort
@@ -34,9 +28,9 @@ module.exports = function () {
 		   view: {
 			   server: renderServerUrl,
 			   data: {},
-			   templateDir: './output/' + outputSubDir + '/'
+			   templateDir: './output'
 		   },
-		   static: './output/' + outputSubDir,
+		   static: './output',
 		},settings)
 	}
 	return config

@@ -1,33 +1,65 @@
 const LessPluginFunctions = require('less-plugin-functions');
 const LessPluginAutoPrefix = require('less-plugin-autoprefix');
+var mode = process.env.compile || 'default'
 
+var domainMap =
 module.exports = {
-	// 需编译的文件入口
+	// 需编译的js文件入口
 	entry: [
-		'{view,m}/**/**entry.js'
+		'{view,view_**,m}/**/**entry.js'
 	],
-	vendorFile: ['m/base/rem/meta.js'] , // 直接产出不需编译
-	// 需要css module的文件
+	online: {
+		'default': {
+			entry: ['view/**/**entry.js'],
+			viewRelease: 'view/**',
+			domain: '/',
+			hash: false,
+			relative: false,
+			externals: {
+			   'jquery': 'jQuery',
+			   'react': 'React',
+			   'react-dom': 'ReactDOM',
+			   'vue': 'Vue'
+		    },
+		},
+		mobile: {
+			entry: ['view_mobile/**/**entry.js'],
+			viewRelease: 'view_mobile/**',
+			domain: '/',
+			hash: false,
+			relative: false,
+			externals: {
+			   'jquery': 'jQuery',
+			   'react': 'React',
+			   'react-dom': 'ReactDOM',
+			   'vue': 'Vue'
+		    },
+		}
+	},
+	fis: function () {
+
+	},
+	// 过滤文件
+	ignoreFile: [
+	    'm/template.html',
+	    '**.vue',
+	    'deploy/**',
+	    'compile/**',
+	    'mock/**',
+	    'package.json',
+	],
+	// 直接产出不需要编译
+	vendorFile: [
+		'm/base/rem/meta.js'
+	],
+	// css modules
+	// http://www.ruanyifeng.com/blog/2016/06/css_modules.html
 	cssModules:{
 		less:/\-m\.less$/,
 		css:/\-m\.css$/,
 	},
-	externals: {
-	   'jquery': 'jQuery',
-	   'react': 'React',
-	   'react-dom': 'ReactDOM',
-	   'vue': 'Vue'
-    },
-	fis: function (fis) {
-
-	},
-	online: {
-		domain: '/',
-		hash: false,
-		relative: false,
-	},
 	moduleTemplateDefaultData:{
-		type:'view',
+		tpl:'view',
 	},
 	less: {
 		plugins: [

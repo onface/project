@@ -8,6 +8,9 @@ const glob = require("glob")
 const minimatch = require("minimatch")
 const isAbsoluteUrl = require('is-absolute-url')
 const util = require("./util")
+/**
+ * relative
+ */
 if (config.user.online.relative) {
     fis.hook(require('fis3-hook-relative'))
     fis.match('**',{
@@ -15,22 +18,9 @@ if (config.user.online.relative) {
     })
 }
 
-fis.match('view/**', {
-    release: false
-})
-fis.match('view_**/**', {
-    release: false
-})
-// suffix: "" "_mobile"
-let suffix = config.mode? '_' + config.mode: ''
-console.log(`compile: view${suffix}/**`)
-fis.match(`view${suffix}/**`, {
-    release: true
-})
-fis.match('**.js',{
-    release:false
-})
-
+/**
+ * md html
+ */
 const htmlEntryScriptParser = function (content, file) {
     if (fis.project.currentMedia() !== 'dev'){
         return content
@@ -53,7 +43,6 @@ const htmlEntryScriptParser = function (content, file) {
         return html
     })
 }
-
 fis.match('**.md', {
     parser:[
         function markrunParser(content, file){
@@ -146,7 +135,9 @@ fis.match('**.html', {
         htmlEntryScriptParser
     ]
 })
-
+/**
+ * livereload
+ */
 fis.media('dev').match('*.{md,html}', {
     postprocessor: function (content, file) {
        if (fis.project.currentMedia() === 'dev') {
@@ -160,38 +151,39 @@ fis.media('dev').match('*.{md,html}', {
        return content
    }
 })
+/**
+ * less
+ */
 fis.match('**.less', {
     parser: fis.plugin('less-2.x',config.user.less),
     rExt:'css'
 })
 
-var ignoreFile = [
-    'm/template.html',
-    '**.vue',
-    'deploy/**',
-    'compile/**',
-    'mock/**',
-    'package.json',
-]
-ignoreFile.forEach(function (glob) {
+/**
+ * ignoreFile
+ */
+config.user.ignoreFile.forEach(function (glob) {
     fis.match(glob, {
         release: false
     })
 })
 
-
+/**
+ * vendorFile
+ */
 config.user.vendorFile.forEach(function (glob) {
     fis.match(glob, {
         release: true
     }, 999)
 })
-config.user.fis(fis)
 
-fis.media('online1').match('**.md', {
-    release: false
-}).match('m/**.{less,css}', {
-    release: false
+fis.match('**.js',{
+    release:false
 })
+/**
+ * online
+ */
+
 config.user.entry.some(function(glob){
     fis.media('online1').match(glob, {
         release: true
@@ -199,6 +191,13 @@ config.user.entry.some(function(glob){
     fis.media('online3').match(glob, {
         release: true
     })
+})
+
+fis.media('online1').match('{**.md,m/**.{less,css,js},view/**,view_**/**}', {
+    release: false
+})
+fis.media('online1').match(config.user.online[config.mode].viewRelease, {
+    release: true
 })
 fis.media('online1')
     .match('**/fis-source-map.json', {
@@ -210,13 +209,9 @@ fis.media('online1')
     })
 fis.media('online3').match('**', {
     useHash: config.user.online.hash,
-    domain: config.user.online.domain.replace(/\/$/,'')
+    domain: config.user.online[config.mode].domain.replace(/\/$/,'')
 }).match('*.{css,less}', {
     optimizer: fis.plugin('clean-css')
 })
 
-fis.media('dev').match('*', {
-    deploy: fis.plugin('local-deliver', {
-        to: config.outputDir
-    })
-})
+config.user.fis(fis)

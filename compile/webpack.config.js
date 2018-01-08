@@ -4,7 +4,6 @@ const glob = require("glob")
 const config = require('./getConfig.js')()
 const webpack = require('webpack')
 
-
 // 扫描获取所有js文件列表
 var entryFiles = []
 config.user.entry.forEach(function(fileReg){
@@ -29,7 +28,6 @@ const webpackConfig =  {
 	    chunkFilename: '__chunk/[id].js',
 	    filename: '[name]',
 	},
-	externals: config.user.externals,
 	module: {
 	    rules: [
 			{

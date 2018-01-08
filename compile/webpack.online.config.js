@@ -3,19 +3,25 @@ const path = require('path')
 const webpackConfig = require('./webpack.config.js')
 var config = require('./getConfig')()
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const glob = require('glob')
 
-Object.keys(webpackConfig.entry).forEach(function (key) {
-    if (/^m\//.test(key)) {
-        delete webpackConfig.entry[key]
-    }
-    else {
-        webpackConfig.entry[key] = webpackConfig.entry[key].filter(function (key) {
-            return key !== 'webpack-hot-middleware/client'
-        })
-    }
+
+var entryFiles = []
+config.user.online[config.mode].entry.forEach(function(fileReg){
+	entryFiles = entryFiles.concat(glob.sync(fileReg) || [])
 })
-
-webpackConfig.output.publicPath = config.domain
+var entryMap = {}
+entryFiles.forEach(function(filePath){
+	entryMap[filePath] = [
+		'./' + filePath
+	]
+})
+if (JSON.stringify(entryMap) === '{}') {
+	console.log('⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄')
+	throw new Error(`compile/webpack.online.config.js: must have entry\r\n entry: ${JSON.stringify(config.user.online.entry)}`)
+}
+webpackConfig.entry = entryMap
+webpackConfig.output.publicPath = config.user.online[config.mode].domain
 webpackConfig.output.chunkFilename = `__chunk/[id]${config.user.online.hash?'-[hash]':''}.js'`
 
 webpackConfig.plugins = [
@@ -28,4 +34,5 @@ webpackConfig.plugins = [
             cache: true
         })
     ]
+webpackConfig.externals = config.user.online.externals
 module.exports = webpackConfig

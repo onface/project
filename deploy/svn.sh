@@ -1,5 +1,5 @@
 !/bin/bash
-svnPath="_svn/test_project/www/client" 
+svnPath="_svn/test_project/www/client"
 
 cd ./deploy/_svn/test_project
 svn update

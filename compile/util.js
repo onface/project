@@ -1,4 +1,5 @@
 const lodash = require('lodash')
+const net = require('net')
 module.exports = {
     getClassNames: function (html) {
         var classNames = []
@@ -13,5 +14,17 @@ module.exports = {
             return item
         })
         return classNames
+    },
+    portIsOccupied: function portIsOccupied (port, callback) {
+      var server = net.createServer().listen(port)
+      server.on('listening', function () {
+            server.close()
+            callback(false)
+      })
+      server.on('error', function (err) {
+        if (err.code === 'EADDRINUSE') {
+            callback(true)
+        }
+      })
     }
 }

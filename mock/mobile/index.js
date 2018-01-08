@@ -13,5 +13,5 @@ app.run(
 /* ========= 模拟配置 =============== */
 app.view({
     url: '/example',
-    template: 'view_mobile/example/index.html'
+    template: '/view_mobile/example/index.html'
 })
