@@ -21,6 +21,7 @@ module.exports = {
 			   'react-dom': 'ReactDOM',
 			   'vue': 'Vue'
 		    },
+			uglify: true,
 		},
 		mobile: {
 			entry: ['view_mobile/**/**entry.js'],
@@ -34,6 +35,7 @@ module.exports = {
 			   'react-dom': 'ReactDOM',
 			   'vue': 'Vue'
 		    },
+			uglify: true,
 		}
 	},
 	fis: function () {
