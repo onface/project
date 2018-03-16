@@ -42,5 +42,5 @@ if (config.user.online[config.mode].uglify) {
 	)
 }
 webpackConfig.externals = config.user.online.externals
-webpackConfig.devtool = 'hidden-source-map'
+webpackConfig.devtool = 'source-map'
 module.exports = webpackConfig
