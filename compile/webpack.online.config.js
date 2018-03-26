@@ -33,7 +33,7 @@ webpackConfig.plugins = [
            'process.env.NODE_ENV': JSON.stringify('production')
         })
     ]
-if (config.user.online[config.mode].uglify) {
+if (config.user.online[config.mode].compress) {
 	webpackConfig.plugins.push(
 		new UglifyJsPlugin({
 			cache: true,

@@ -15,13 +15,13 @@ module.exports = {
 			domain: '/',
 			hash: false,
 			relative: false,
+			compress:false,
 			externals: {
 			   'jquery': 'jQuery',
 			   'react': 'React',
 			   'react-dom': 'ReactDOM',
 			   'vue': 'Vue'
-		    },
-			uglify: true,
+		    }
 		},
 		mobile: {
 			entry: ['view_mobile/**/**entry.js'],
@@ -29,13 +29,13 @@ module.exports = {
 			domain: '/',
 			hash: false,
 			relative: false,
+			compress:false,
 			externals: {
 			   'jquery': 'jQuery',
 			   'react': 'React',
 			   'react-dom': 'ReactDOM',
 			   'vue': 'Vue'
-		    },
-			uglify: true,
+		    }
 		}
 	},
 	fis: function () {
