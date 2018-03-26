@@ -41,7 +41,7 @@ const htmlEntryScriptParser = function (content, file) {
                     </script>`
         }
         return html
-    })
+    }).replace(/href="([^"]+)\.md"/g, 'href="$1.html"')
 }
 fis.match('**.md', {
     parser:[
@@ -159,27 +159,11 @@ fis.match('**.less', {
     rExt:'css'
 })
 
-/**
- * ignoreFile
- */
-config.user.ignoreFile.forEach(function (glob) {
-    fis.match(glob, {
-        release: false
-    })
-})
-
-/**
- * vendorFile
- */
-config.user.vendorFile.forEach(function (glob) {
-    fis.match(glob, {
-        release: true
-    }, 999)
-})
-
 fis.match('**.js',{
     release:false
 })
+
+
 /**
  * online
  */
@@ -198,7 +182,7 @@ fis.media('online1').match('{**.md,m/**.{less,css,js},view/**,view_**/**}', {
 })
 fis.media('online1').match(config.user.online[config.mode].viewRelease, {
     release: true
-})
+}, true)
 fis.media('online1')
     .match('**/fis-source-map.json', {
         parser: [
@@ -208,10 +192,37 @@ fis.media('online1')
         ]
     })
 fis.media('online3').match('**', {
-    useHash: config.user.online.hash,
+    useHash: config.user.online[config.mode].hash,
     domain: config.user.online[config.mode].domain.replace(/\/$/,'')
-}).match('*.{css,less}', {
-    optimizer: fis.plugin('clean-css')
 })
 
+config.user.online[config.mode].noHashFile.forEach(function (glob) {
+    fis.media('online3').match(glob, {
+        useHash: false
+    })
+})
+
+if (config.user.online[config.mode].compress) {
+    fis.media('online3').match('*.{css,less}', {
+        optimizer: fis.plugin('clean-css')
+    })
+}
 config.user.fis(fis)
+
+/**
+ * ignoreFile
+ */
+config.user.ignoreFile.forEach(function (glob) {
+    fis.match(glob, {
+        release: false
+    }, true)
+})
+
+/**
+ * vendorFile
+ */
+config.user.vendorFile.forEach(function (glob) {
+    fis.match(glob, {
+        release: true
+    }, 999)
+})

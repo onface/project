@@ -14,6 +14,9 @@ module.exports = {
 			viewRelease: 'view/**',
 			domain: '/',
 			hash: false,
+			noHashFile: [
+				'view/**/**.html'
+			],
 			relative: false,
 			compress:false,
 			externals: {
@@ -28,6 +31,9 @@ module.exports = {
 			viewRelease: 'view_mobile/**',
 			domain: '/',
 			hash: false,
+			noHashFile: [
+				'view_mobile/**/**.html'
+			],
 			relative: false,
 			compress:false,
 			externals: {

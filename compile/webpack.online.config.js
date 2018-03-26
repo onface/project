@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const webpackConfig = require('./webpack.config.js')
 var config = require('./getConfig')()
+const FastUglifyJsPlugin = require('fast-uglifyjs-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const glob = require('glob')
 
@@ -22,7 +23,7 @@ if (JSON.stringify(entryMap) === '{}') {
 }
 webpackConfig.entry = entryMap
 webpackConfig.output.publicPath = config.user.online[config.mode].domain
-webpackConfig.output.chunkFilename = `__chunk/[id]${config.user.online.hash?'-[hash]':''}.js'`
+webpackConfig.output.chunkFilename = `__chunk/[id]${config.user.online[config.mode].hash?'-[hash]':''}.js'`
 
 
 
@@ -35,8 +36,13 @@ webpackConfig.plugins = [
     ]
 if (config.user.online[config.mode].compress) {
 	webpackConfig.plugins.push(
-		new UglifyJsPlugin({
+		new FastUglifyJsPlugin({
+			compress: {
+	            warnings: false
+	        },
+			debug: true,
 			cache: true,
+			cacheFolder: path.resolve(__dirname, '../deploy/_uglify_cache'),
 			sourceMap: true
 		})
 	)
