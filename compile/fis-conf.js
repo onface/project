@@ -201,14 +201,15 @@ config.user.online[config.mode].noHashFile.forEach(function (glob) {
         useHash: false
     })
 })
-
 if (config.user.online[config.mode].compress) {
     fis.media('online3').match('*.{css,less}', {
         optimizer: fis.plugin('clean-css')
     })
 }
 config.user.fis(fis)
-
+fis.media('online3').match('{__media,__chunk}/**', {
+    useHash: false
+})
 /**
  * ignoreFile
  */
