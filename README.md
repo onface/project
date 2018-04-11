@@ -7,12 +7,11 @@
 ## Install
 
 - [安装 yarn](https://yarnpkg.com/zh-Hans/docs/install)
-- [Install yarn](https://yarnpkg.com/en/docs/install)
 
 ```shell
 # 你可以将 yarn切换 taobao 源
 # yarn config set registry https://registry.npm.taobao.org
-yarn global add fis3 nodemon webpack@1.13.2
+yarn global add fis3 nodemon webpack@3.10.0
 ```
 
 ```shell
@@ -25,7 +24,7 @@ yarn install
 
 ```s
 # 编译
-compile/ 
+compile/
 # 发布配置
 deploy/
 # 模块
@@ -36,7 +35,7 @@ mock/
 	mobile/		# 移动端
 	render/		# php渲染脚本
 # 默认视图
-view/	
+view/
 # 移动端视图
 view_mobile/
 # 用户编译配置（可自行根据项目进行适当更改）
@@ -82,61 +81,14 @@ npm run s:m
 > 安装cpy-cli
 
 ```shell
-npm install -g cpy-cli
-## or yarn global add cpy-cli
+yarn global add cpy-cli
 ```
 
 ```shell
 # 打包生产环境代码
 npm run online
+# 更新 svn (每个项目只需要运行一次)
+sh ./deploy/svn-co.sh
 # 发布
-npm run dp
+sh ./deploy/svn.sh
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
