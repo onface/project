@@ -2,14 +2,16 @@ const LessPluginFunctions = require('less-plugin-functions');
 const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 var mode = process.env.compile || 'default'
 
-var domainMap =
 module.exports = {
-	// 需编译的js文件入口
+	// 开发阶段 JS 文件入口 /compile/doc/entry.md
 	entry: [
-		'{view,view_**,m}/**/**entry.js'
+		'{view,view_**,m}/{common,common_**}/**entry.js',
+		`{view,view_**,m}/${process.env.e || '**'}/**entry.js`
 	],
+	// 发布阶段配置
 	online: {
 		'default': {
+			// /compile/doc/entry.md#online.default.entry
 			entry: ['view/**/**entry.js'],
 			viewRelease: 'view/**',
 			domain: '/',
