@@ -180,9 +180,12 @@ config.user.entry.some(function(glob){
 fis.media('online1').match('{**.md,m/**.{less,css,js},view/**,view_**/**}', {
     release: false
 })
-fis.media('online1').match(config.user.online[config.mode].viewRelease, {
-    release: true
-}, true)
+config.user.online[config.mode].viewRelease.forEach(function (item) {
+    fis.media('online1').match(item, {
+        release: true
+    }, true)
+})
+
 fis.media('online1')
     .match('**/fis-source-map.json', {
         parser: [

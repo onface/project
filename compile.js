@@ -13,11 +13,12 @@ module.exports = {
 		'default': {
 			// /compile/doc/entry.md#online.default.entry
 			entry: ['view/**/**entry.js'],
-			viewRelease: 'view/**',
+			// /compile/doc/viewRelease.md
+			viewRelease: ['view/**'],
 			domain: '/',
 			hash: false,
 			noHashFile: [
-				'view/**/**.html'
+				'**.html'
 			],
 			relative: false,
 			compress:false,
@@ -30,11 +31,11 @@ module.exports = {
 		},
 		mobile: {
 			entry: ['view_mobile/**/**entry.js'],
-			viewRelease: 'view_mobile/**',
+			viewRelease: ['view_mobile/**'],
 			domain: '/',
 			hash: false,
 			noHashFile: [
-				'view_mobile/**/**.html'
+				'**.html'
 			],
 			relative: false,
 			compress:false,
