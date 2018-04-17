@@ -5,3 +5,4 @@ deploy/_uglify_cache/
 view_mobile/.DS_Store
 view/.DS_Store
 .DS_Store
+yarn.lock
