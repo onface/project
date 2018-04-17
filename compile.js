@@ -3,7 +3,7 @@ const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 var mode = process.env.compile || 'default'
 
 module.exports = {
-	// 开发阶段 JS 文件入口 /compile/doc/entry.md
+	// 开发阶段入口配置
 	entry: [
 		'{view,view_**,m}/{common,common_**}/**entry.js',
 		`{view,view_**,m}/${process.env.e || '**'}/**entry.js`
@@ -11,9 +11,7 @@ module.exports = {
 	// 发布阶段配置
 	online: {
 		'default': {
-			// /compile/doc/entry.md#online.default.entry
 			entry: ['view/**/**entry.js'],
-			// /compile/doc/viewRelease.md
 			viewRelease: ['view/**'],
 			domain: '/',
 			hash: false,
@@ -47,10 +45,11 @@ module.exports = {
 		    }
 		}
 	},
-	fis: function () {
-
+	fis: function (fis) {
+		// fis.match('*.css',
+		//   useSprite: true
+		// })
 	},
-	// 过滤文件
 	ignoreFile: [
 	    'm/template.html',
 	    '**.vue',
@@ -59,12 +58,9 @@ module.exports = {
 	    'mock/**',
 	    'package.json',
 	],
-	// 直接产出不需要编译
 	vendorFile: [
 		'm/base/rem/meta.js'
 	],
-	// css modules
-	// http://www.ruanyifeng.com/blog/2016/06/css_modules.html
 	cssModules:{
 		less:/\-m\.less$/,
 		css:/\-m\.css$/,
