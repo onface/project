@@ -9,24 +9,6 @@ class Home extends React.Component {
         const self = this
         return (
             <div style={{padding: 10}} >
-                <div style={{marginBottom: 10}}>
-                    <ButtonGroup>
-                        <Button type="info" prepend={(<Icon type="user" />)}
-                            onClick={() => {
-                                HashRouter.push('/send')
-                            }}
-                         >
-                             发邮件
-                        </Button>
-                        <Button type="" prepend={(<Icon type="delete" />)}
-                            onClick={() => {
-                                HashRouter.push('/dustbin')
-                            }}
-                        >
-                             垃圾箱
-                        </Button>
-                    </ButtonGroup>
-                </div>
                 <Table
                     columns={[
                         {
@@ -49,7 +31,14 @@ class Home extends React.Component {
                         {
                             title: '标题',
                             key: 'title',
-                            render:(msg) => (<strong>{msg}</strong>)
+                            render:(msg, item) => {
+                                if (item.read) {
+                                    return msg
+                                }
+                                else {
+                                    return <strong>{msg}</strong>
+                                }
+                            }
                         },
                         {
                             title: '时间',

@@ -1,15 +1,14 @@
 import Mock from "mockjs"
 export default {
-    $view: {
-        index: {
-
-        }
-    },
     user: {
 
     },
     dustbin: [
-        
+        {
+            id: 'UFWFFF',
+            title: '上线日期是五月底',
+            date: '2018-01-12 12:32:52'
+        }
     ],
     inbox: [
         {

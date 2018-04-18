@@ -5,19 +5,19 @@ export default function (state = [], action) {
     state = extend.clone(state)
     let payload = action.payload
     let c = new Calling({
-        getValue: function () { return {data: state} },
-        subscribe: function (data) { state = data.data }
+        getValue: function () { return {state: state} },
+        subscribe: function (data) { state = data.state }
     })
     switch (action.type) {
         case 'MOVE_TO_DUSTBIN':
-            c.delete(`data[{id:"${payload.data.id}"}]`)
+            c.delete(`state[{id:"${payload.data.id}"}]`)
         break
         case 'inbox:NEW_EMAIL':
-            c.push('data', payload)
+            c.push('state', payload)
         break
         case 'inbox:SWITCH_READ':
             c.set(
-                `data[{id: "${payload.id}"}].read`,
+                `state[{id: "${payload.id}"}].read`,
                 (value) => !value
             )
         break

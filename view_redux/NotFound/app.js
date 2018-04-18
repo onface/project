@@ -1,5 +1,8 @@
 import React , { Component } from "react"
 import { Link, Route, BrowserRouter as Router} from 'react-router-dom'
+import Button from "button.react"
+const { ButtonGroup } = Button
+import Icon from "icon.react"
 class NotFound extends Component {
     constructor (props) {
         super(props)
@@ -12,8 +15,12 @@ class NotFound extends Component {
         const self = this
         return (
             <div>
-                Not found
-               <Link to="/" >Home</Link>
+               <h2>Not found</h2>
+               <Link to="/" >
+                   <Button type="info" >
+                    Home
+                   </Button>
+               </Link>
             </div>
         )
     }
