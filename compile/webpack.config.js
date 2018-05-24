@@ -58,37 +58,28 @@ const webpackConfig =  {
 		    },
 		    {
 		    	test: /[^m]\.less$/,
-		        loader: ['style-loader','css-loader','less-loader'],
-		        exclude: /node_modules/,
-		    },
-		    {
-		    	test:config.user.cssModules.less,
 		        loader: [
-			        'style-loader',
-			        'css-loader?modules&localIdentName=[local]__[hash:base64:5]',
-			        'less-loader',
-			        {
-			            loader:"postcss-loader",
-			            options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
-			                plugins: (loader) => [
-			                    require('autoprefixer')(), //CSS浏览器兼容
-			                ]
-			            }
-			        }
-		        ],
+					'style-loader',
+					'css-loader',
+					'less-loader',
+					{
+					   loader:"postcss-loader",
+					   options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+						   plugins: (loader) => [
+							   require('autoprefixer')(), //CSS浏览器兼容
+						   ]
+					   }
+				   }
+				],
 		        exclude: /node_modules/,
-		    },
-			{
-		        test: config.user.cssModules.css,
-		        loader: "style-loader!css-loader?modules&localIdentName=[local]__[hash:base64:5]"
 		    },
 			{ test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=__media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
-		   { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=__media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=__media/[path][name]-[hash:6].[ext]'},
-		   { test: /\.json$/, loader: 'json-loader' }
+		    { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__media/[path][name]-[hash:6].[ext]' },
+		    { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=__media/[path][name]-[hash:6].[ext]' },
+		    { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
+		    { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=__media/[path][name]-[hash:6].[ext]' },
+		    { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=__media/[path][name]-[hash:6].[ext]'},
+		    { test: /\.json$/, loader: 'json-loader' }
 	    ],
 	},
 	/*

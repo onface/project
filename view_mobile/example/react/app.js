@@ -1,5 +1,5 @@
 import React , { Component } from "react"
-import s from "./index-m.less"
+import s from "./index.less?modules"
 class App extends Component {
     constructor (props) {
         super(props)
