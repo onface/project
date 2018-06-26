@@ -58,24 +58,30 @@ const webpackConfig =  {
 		    },
 		    {
 		    	test: /[^m]\.less$/,
-		        loader: ['style-loader','css-loader','less-loader'],
+				use: [
+					'style-loader',
+					'css-loader',
+					{
+						loader: 'less-loader',
+						options: {
+							plugins: config.user.less.plugins
+						}
+					}
+				],
 		        exclude: /node_modules/,
 		    },
 		    {
 		    	test:config.user.cssModules.less,
-		        loader: [
-			        'style-loader',
-			        'css-loader?modules&localIdentName=[local]__[hash:base64:5]',
-			        'less-loader',
-			        {
-			            loader:"postcss-loader",
-			            options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
-			                plugins: (loader) => [
-			                    require('autoprefixer')(), //CSS浏览器兼容
-			                ]
-			            }
-			        }
-		        ],
+				use: [
+					'style-loader',
+					'css-loader?modules&localIdentName=[local]__[hash:base64:5]',
+					{
+						loader: 'less-loader',
+						options: {
+							plugins: config.user.less.plugins
+						}
+					}
+				],
 		        exclude: /node_modules/,
 		    },
 			{
