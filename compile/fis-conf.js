@@ -213,14 +213,6 @@ config.user.fis(fis)
 fis.media('online3').match('{__media,__chunk}/**', {
     useHash: false
 })
-/**
- * ignoreFile
- */
-config.user.ignoreFile.forEach(function (glob) {
-    fis.match(glob, {
-        release: false
-    }, true)
-})
 
 /**
  * vendorFile
@@ -229,4 +221,13 @@ config.user.vendorFile.forEach(function (glob) {
     fis.match(glob, {
         release: true
     }, 999)
+})
+
+/**
+ * ignoreFile
+ */
+config.user.ignoreFile.forEach(function (glob) {
+    fis.match(glob, {
+        release: false
+    }, true)
 })
