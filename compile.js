@@ -61,6 +61,10 @@ module.exports = {
 	vendorFile: [
 		'm/base/rem/meta.js'
 	],
+	cssModules:{
+		less:/\.\m\.less$/,
+		css:/\.\m\.css$/,
+	},
 	moduleTemplateDefaultData:{
 		tpl:'view',
 	},
