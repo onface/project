@@ -54,9 +54,14 @@ module.exports = {
 	    'm/template.html',
 	    '**.vue',
 	    'deploy/**',
+	    'doc/**',
 	    'compile/**',
 	    'mock/**',
 	    'package.json',
+		'nodemon.json',
+		'yarn.lock',
+		'Dockerfile',
+		'output_online'
 	],
 	vendorFile: [
 		'm/base/rem/meta.js'
