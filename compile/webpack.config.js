@@ -57,7 +57,7 @@ const webpackConfig =  {
 		        exclude: /node_modules/
 		    },
 		    {
-		    	test: /[^m]\.less$/,
+		    	test: /\.less$/,
 				use: [
 					'style-loader',
 					'css-loader',
@@ -88,12 +88,12 @@ const webpackConfig =  {
 		        test: config.user.cssModules.css,
 		        loader: "style-loader!css-loader?modules&localIdentName=[local]__[hash:base64:5]"
 		    },
-			{ test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__chunk/__media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__chunk/__media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=__chunk/__media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
-		   { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=__chunk/__media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=__chunk/__media/[path][name]-[hash:6].[ext]'},
+			{ test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__chunk/media/[path][name]-[hash:6].[ext]' },
+		   { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__chunk/media/[path][name]-[hash:6].[ext]' },
+		   { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=__chunk/media/[path][name]-[hash:6].[ext]' },
+		   { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=__chunk/media/[path][name]-[hash:6].[ext]' },
+		   { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=__chunk/media/[path][name]-[hash:6].[ext]' },
+		   { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=__chunk/media/[path][name]-[hash:6].[ext]'},
 		   { test: /\.json$/, loader: 'json-loader' }
 	    ],
 	},
