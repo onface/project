@@ -41,7 +41,7 @@ const htmlEntryScriptParser = function (content, file) {
                     </script>`
         }
         return html
-    }).replace(/href="([^"]+)\.md"/g, 'href="$1.html"')
+    }).replace(/href="([^"]+)\.md([?#].*)?"/g, 'href="$1.html$2"')
 }
 fis.match('**.md', {
     parser:[
@@ -164,6 +164,7 @@ fis.match('**.js',{
 })
 
 
+
 /**
  * online
  */
@@ -212,7 +213,9 @@ if (config.user.online[config.mode].compress) {
 config.user.fis(fis)
 fis.media('online3').match('{__media,__chunk}/**', {
     useHash: false
-})
+}).match('__chunk/**', {
+    release:true
+}, 999)
 
 /**
  * vendorFile
@@ -220,7 +223,7 @@ fis.media('online3').match('{__media,__chunk}/**', {
 config.user.vendorFile.forEach(function (glob) {
     fis.match(glob, {
         release: true
-    }, 999)
+    }, 998)
 })
 
 /**
@@ -229,5 +232,5 @@ config.user.vendorFile.forEach(function (glob) {
 config.user.ignoreFile.forEach(function (glob) {
     fis.match(glob, {
         release: false
-    }, true)
+    }, 999)
 })
