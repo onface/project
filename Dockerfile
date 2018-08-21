@@ -1,4 +1,4 @@
-FROM onface/node-yarn-fis3:8
+FROM onface/node-yarn-fis3:8-slim
 WORKDIR /app
 COPY . /app/
 RUN yarn \
