@@ -9,7 +9,7 @@ module.exports = {
 	// 不需要 webpack 编译但是需要在页面使用 <script> 引用的文件
 	vendor: [
 		'm/base/rem/meta.js',
-		'm/vendor/**/**'
+		'm/vendor/**'
 	],
 	// 发布阶段配置
 	online: {
