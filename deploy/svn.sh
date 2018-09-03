@@ -2,6 +2,9 @@
 svnPath="_svn/project"
 cd ./deploy/${svnPath}
 svn update
+svn delete view
+svn delete m
+svn delete __chunk
 cd ../../../
 cpy "view/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
 cpy "m/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents

@@ -8,7 +8,9 @@ class App extends Component {
     render() {
         const self = this
         return (
-            <div className={s.reactNode}>
+            <div className={s.reactNode} onClick={() => {
+                console.log('log')
+            }} >
                 react node
                 <img src={require('./onface.png')} width="20" alt=""/>
             </div>

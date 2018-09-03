@@ -2,9 +2,9 @@ const webpack = require('webpack')
 const path = require('path')
 const webpackConfig = require('./webpack.config.js')
 var config = require('./getConfig')()
-const FastUglifyJsPlugin = require('fast-uglifyjs-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const glob = require('glob')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 
 var entryFiles = []
@@ -28,6 +28,7 @@ webpackConfig.output.chunkFilename = `__chunk/[id]${config.user.online[config.mo
 
 
 webpackConfig.plugins = [
+		new VueLoaderPlugin(),
         new webpack.NamedModulesPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
@@ -35,18 +36,17 @@ webpackConfig.plugins = [
         })
     ]
 if (config.user.online[config.mode].compress) {
-	webpackConfig.plugins.push(
-		new FastUglifyJsPlugin({
-			compress: {
-	            warnings: false
-	        },
-			debug: true,
-			cache: true,
-			cacheFolder: path.resolve(__dirname, '../deploy/_uglify_cache'),
-			sourceMap: true
-		})
-	)
+	webpackConfig.optimization = {
+		minimizer: [
+			new UglifyJsPlugin({
+				cache: true,
+				sourceMap: true
+			})
+		]
+	}
 }
+webpackConfig.mode = 'production'
 webpackConfig.externals = config.user.online.externals
 webpackConfig.devtool = 'source-map'
+module.exports = config.user.webpackConfigOnline(webpackConfig)
 module.exports = webpackConfig

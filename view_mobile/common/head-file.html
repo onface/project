@@ -1,12 +1,5 @@
 <!-- common style or script -S-->
 <link rel="stylesheet" href="./index.less" />
- <!-- Polyfills -->
-<!--[if lt IE 10]>
-<script src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,es5-shim/4.5.7/es5-shim.min.js,es5-shim/4.5.7/es5-sham.min.js,es6-shim/0.35.1/es6-sham.min.js,es6-shim/0.35.1/es6-shim.min.js,html5shiv/3.7.2/html5shiv.min.js,media-match/2.0.2/media.match.min.js"></script>
-<![endif]-->
-<script src="https://as.alipayobjects.com/g/component/??es6-shim/0.35.1/es6-sham.min.js,es6-shim/0.35.1/es6-shim.min.js"></script>
-<script>
-Object.values = Object.values ? Object.values : function(obj) { var allowedTypes = ["[object String]", "[object Object]", "[object Array]", "[object Function]"]; var objType = Object.prototype.toString.call(obj); if(obj === null || typeof obj === "undefined") { throw new TypeError("Cannot convert undefined or null to object"); } else if(!~allowedTypes.indexOf(objType)) { return []; } else { if (Object.keys) { return Object.keys(obj).map(function (key) { return obj[key]; }); } var result = []; for (var prop in obj) { if (obj.hasOwnProperty(prop)) { result.push(obj[prop]); } } return result; } }; if (typeof module !== 'undefined' && module.exports) { module.exports = Object.values; }
-</script>
-<script src="/m/base/rem/meta.js" ></script>
+<link rel="import" href="../../m/polyfile/code.html?__inline" />
+<script src="../../m/base/rem/meta.js" ></script>
 <!-- common style or script -E-->

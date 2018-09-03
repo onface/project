@@ -211,7 +211,7 @@ if (config.user.online[config.mode].compress) {
     })
 }
 config.user.fis(fis)
-fis.media('online3').match('{__media,__chunk}/**', {
+fis.media('online3').match('__chunk/**', {
     useHash: false
 }).match('__chunk/**', {
     release:true

@@ -3,6 +3,8 @@ const fs = require('fs')
 const glob = require("glob")
 const config = require('./getConfig.js')()
 const webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
 
 // 扫描获取所有js文件列表
 var entryFiles = []
@@ -21,6 +23,7 @@ if (JSON.stringify(entryMap) === '{}') {
 	throw new Error(`compile/webpack.config.js: must have entry\r\n entry: ${JSON.stringify(config.user.entry)}`)
 }
 const webpackConfig =  {
+	mode: 'development',
 	entry: entryMap,
 	output: {
 		path: path.resolve(__dirname, '../output'),
@@ -86,14 +89,14 @@ const webpackConfig =  {
 		    },
 			{
 		        test: config.user.cssModules.css,
-		        loader: "style-loader!css-loader?modules&localIdentName=[local]__[hash:base64:5]"
+		        loader: "style-loader!css-loader?modules&localIdentName=[local]__[hash:7]"
 		    },
-			{ test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__chunk/media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=__chunk/media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=__chunk/media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=__chunk/media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=__chunk/media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=/[path][name]_[hash:7].[ext]'},
+			{ test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=[path][name]-[hash:7].[ext]' },
+		   { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=[path][name]-[hash:7].[ext]' },
+		   { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=[path][name]-[hash:7].[ext]' },
+		   { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=[path][name]-[hash:7].[ext]' },
+		   { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=[path][name]-[hash:7].[ext]' },
+		   { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=[path][name]_[hash:7].[ext]'},
 		   { test: /\.json$/, loader: 'json-loader' }
 	    ],
 	},
@@ -115,6 +118,7 @@ const webpackConfig =  {
         colors: true
 	},
 	plugins:[
+		new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 		new webpack.NoEmitOnErrorsPlugin()

@@ -16,10 +16,11 @@ module.exports = {
 			domain: '/',
 			hash: true,
 			noHashFile: [
-				'**.html'
+				'**.html',
+				'fis-source-map.json'
 			],
 			relative: false,
-			compress:false,
+			compress:true,
 			externals: {
 			   'jquery': 'jQuery',
 			   'react': 'React',
@@ -33,7 +34,8 @@ module.exports = {
 			domain: '/',
 			hash: false,
 			noHashFile: [
-				'**.html'
+				'**.html',
+				'fis-source-map.json'
 			],
 			relative: false,
 			compress:false,
@@ -86,6 +88,7 @@ module.exports = {
 			"es2015"
 		],
 		"plugins": [
+			"react-hot-loader/babel",
 			[
 				 "transform-react-jsx",
 				 {"pragma": "require(\"react\").createElement"}
@@ -97,5 +100,11 @@ module.exports = {
 			"transform-decorators-legacy",
 			"transform-class-properties"
 		]
+	},
+	webpackConfigDev: function (webpackConfig) {
+		return webpackConfig
+	},
+	webpackConfigOnline: function (webpackConfig) {
+		return webpackConfig
 	}
 }
