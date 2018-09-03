@@ -67,12 +67,8 @@ module.exports = {
 		'Dockerfile',
 		'output_online'
 	],
-	cssModules:{
-		less:/\.\m\.less$/,
-		css:/\.\m\.css$/,
-	},
 	moduleTemplateDefaultData:{
-		tpl:'view',
+		tpl: 'view',
 	},
 	less: {
 		plugins: [

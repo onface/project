@@ -34,7 +34,7 @@ const webpackConfig =  {
 	module: {
 	    rules: [
 			{
-		        test: /[^m]\.css$/,
+		        test: /\.css$/,
 		        use:[
 			        'style-loader',
 			        'css-loader',
@@ -73,31 +73,13 @@ const webpackConfig =  {
 				],
 		        exclude: /node_modules/,
 		    },
-		    {
-		    	test:config.user.cssModules.less,
-				use: [
-					'style-loader',
-					'css-loader?modules&localIdentName=[local]__[hash:base64:5]',
-					{
-						loader: 'less-loader',
-						options: {
-							plugins: config.user.less.plugins
-						}
-					}
-				],
-		        exclude: /node_modules/,
-		    },
-			{
-		        test: config.user.cssModules.css,
-		        loader: "style-loader!css-loader?modules&localIdentName=[local]__[hash:7]"
-		    },
 			{ test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=[path][name]-[hash:7].[ext]' },
-		   { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=[path][name]-[hash:7].[ext]' },
-		   { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=[path][name]-[hash:7].[ext]' },
-		   { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=[path][name]-[hash:7].[ext]' },
-		   { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=[path][name]-[hash:7].[ext]' },
-		   { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=[path][name]_[hash:7].[ext]'},
-		   { test: /\.json$/, loader: 'json-loader' }
+		    { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=[path][name]-[hash:7].[ext]' },
+		    { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=[path][name]-[hash:7].[ext]' },
+		    { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=[path][name]-[hash:7].[ext]' },
+		    { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=[path][name]-[hash:7].[ext]' },
+		    { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=[path][name]_[hash:7].[ext]'},
+		    { test: /\.json$/, loader: 'json-loader' }
 	    ],
 	},
 	/*

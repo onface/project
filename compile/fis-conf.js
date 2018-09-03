@@ -177,7 +177,7 @@ config.user.entry.some(function(glob){
         release: true
     })
 })
-
+// 
 fis.media('online1').match('{**.md,m/**.{less,css,js},view/**,view_**/**}', {
     release: false
 })
