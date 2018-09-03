@@ -1,45 +1,45 @@
 # entry
 
-`entry` 用来配置 `JavaScript` 入口文件。项目中会将 JS 按功能划分文件，但不是每个文件都需要在页面中通过 `<script>` 引用或异步加载使用。
+onface-project 使用 [webpack](http://webpack.js.org/) 作为 JS 构建工具。
 
-并且配置 `entry` 后编译速度大幅度提高。
+`entry` 用来配置 `JavaScript` 入口文件。
+
+> 入口文件的定义是：项目中会将 JS 按页面划分文件，但**不是每个JS文件都需要在页面中**通过 `<script>` 加载。只有在页面中被直接加载的文件才是入口文件、
 
 `entry` 的默认配置是
 
 ```js
-[
-    '{view,view_**,m}/{common,common_**}/**entry.js',
-    `{view,view_**,m}/${process.env.e || '**'}/**entry.js`
+entry: [
+    `{${process.env.e || 'view,view_**,m'}}/**/**entry.js`
 ]
 ```
 
-> `{` `}` `*` `,` 等符号是 [glob](http://fis.baidu.com/fis3/docs/api/config-glob.html) 语法
-
-## process.env.e
-
-`process.env.e` 是 `e=example npm run js` 中的 `"example"`
-
-如果运行时候配置了 `e=example` `entry` 在运行时将变成
+默认运行 `npm run js` 运行时 entry 配置是
 
 ```js
 [
-    '{view,view_**,m}/{common,common_**}/**entry.js',
-    "{view,view_**,m}/example/**entry.js"
-]
-```
-
-没有配置在运行时会变成
-
-```js
-[
-    '{view,view_**,m}/{common,common_**}/**entry.js',
     "{view,view_**,m}/**/**entry.js"
 ]
 ```
 
+
+> `{` `}` `*` `,` 等符号是 [glob](http://fis.baidu.com/fis3/docs/api/config-glob.html) 语法
+
 项目代码越来越多时，开发阶段编译所有入口文件会变得很慢。
 
-使用 `process.env.e` 可以值编译部分文件从而达到提速的目的。
+使用 `process.env.e` 可以只编译部分文件从而达到提速的目的。
+
+## process.env.e
+
+当只需要开发 `view/react/index.html` 页时，运行 `e=view/react npm run js` 会赋值 `process.env.e`
+
+此时 `entry` 在运行时将变成
+
+```js
+[
+    "view/react/**/**entry.js"
+]
+```
 
 ## online.default.entry
 

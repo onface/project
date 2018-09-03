@@ -1,12 +1,10 @@
 const LessPluginFunctions = require('less-plugin-functions');
 const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 var mode = process.env.compile || 'default'
-
 module.exports = {
 	// 开发阶段入口配置
 	entry: [
-		'{view,view_**,m}/{common,common_**}/**entry.js',
-		`{view,view_**,m}/${process.env.e || '**'}/**entry.js`
+		`{${process.env.e || 'view,view_**,m'}}/**/**entry.js`
 	],
 	// 发布阶段配置
 	online: {
