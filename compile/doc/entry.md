@@ -2,9 +2,9 @@
 
 onface-project 使用 [webpack](http://webpack.js.org/) 作为 JS 构建工具。
 
-`entry` 用来配置 `JavaScript` 入口文件。
+`entry` 用来配置 `JavaScript` 页面入口文件。
 
-> 入口文件的定义是：项目中会将 JS 按页面划分文件，但**不是每个JS文件都需要在页面中**通过 `<script>` 加载。只有在页面中被直接加载的文件才是入口文件、
+> 页面入口文件的定义是：项目中会将 JS 按页面划分文件，但**不是每个JS文件都需要在页面中**通过 `<script>` 加载。只有在页面中被直接加载的文件才是页面入口文件、
 
 `entry` 的默认配置是
 
@@ -25,7 +25,7 @@ entry: [
 
 > `{` `}` `*` `,` 等符号是 [glob](http://fis.baidu.com/fis3/docs/api/config-glob.html) 语法
 
-项目代码越来越多时，开发阶段编译所有入口文件会变得很慢。
+项目代码越来越多时，开发阶段编译所有页面入口文件会变得很慢。
 
 使用 `process.env.e` 可以只编译部分文件从而达到提速的目的。
 
@@ -43,6 +43,6 @@ entry: [
 
 ## online.default.entry
 
-`online.default.entry` 和 `online.mobile.entry` 是发布阶段的入口配置。
+`online.default.entry` 和 `online.mobile.entry` 是发布阶段的页面入口文件配置。
 
-分别对应运行  `npm run online` 和 `compile=mobile npm run online` 时候的入口
+分别对应运行  `npm run online` 和 `compile=mobile npm run online` 时候的页面入口文件

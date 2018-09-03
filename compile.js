@@ -2,9 +2,13 @@ const LessPluginFunctions = require('less-plugin-functions');
 const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 var mode = process.env.compile || 'default'
 module.exports = {
-	// 开发阶段入口配置
+	// 开发阶段入口文件
 	entry: [
 		`{${process.env.e || 'view,view_**,m'}}/**/**entry.js`
+	],
+	// 不需要 webpack 编译但是需要在页面使用 <script> 引用的文件
+	vendor: [
+		'm/base/rem/meta.js'
 	],
 	// 发布阶段配置
 	online: {
@@ -50,11 +54,10 @@ module.exports = {
 		//   useSprite: true
 		// })
 	},
-	ignoreFile: [
+	ignore: [
 	    'm/template.html',
 	    '**.vue',
 	    'deploy/**',
-	    'doc/**',
 	    'compile/**',
 	    'mock/**',
 	    'package.json',
@@ -62,9 +65,6 @@ module.exports = {
 		'yarn.lock',
 		'Dockerfile',
 		'output_online'
-	],
-	vendorFile: [
-		'm/base/rem/meta.js'
 	],
 	cssModules:{
 		less:/\.\m\.less$/,

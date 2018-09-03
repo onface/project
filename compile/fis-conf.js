@@ -218,18 +218,18 @@ fis.media('online3').match('__chunk/**', {
 }, 999)
 
 /**
- * vendorFile
+ * vendor
  */
-config.user.vendorFile.forEach(function (glob) {
+config.user.vendor.forEach(function (glob) {
     fis.match(glob, {
         release: true
     }, 998)
 })
 
 /**
- * ignoreFile
+ * ignore
  */
-config.user.ignoreFile.forEach(function (glob) {
+config.user.ignore.forEach(function (glob) {
     fis.match(glob, {
         release: false
     }, 999)

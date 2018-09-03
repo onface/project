@@ -40,6 +40,8 @@ view/
 view_mobile/
 # 用户编译配置（可自行根据项目进行适当更改）
 compile.js 	# 默认
+# 编译后的文件目录
+output/
 ```
 
 
