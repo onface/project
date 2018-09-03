@@ -12,12 +12,15 @@
 
 ```js
 vendor: [
-    'm/base/rem/meta.js'
+    'm/base/rem/meta.js',
+    'm/vendor/**'
 ]
 ```
 
 `m/base/rem/meta.js` 是用来实现 rem 的，需要在 `<head>` 中加载运行。所以需要单独存放。不适合放在 `view/common/entry.js` 中，并且不需要 webpack 编译。放在 `vendor` 配置中最合适。
 
 相关链接：[less-rem](https://github.com/onface/less-rem)
+
+`m/vendor/**` 是为了方便，第三方的文件都放在 `m/vendor/` 目录下就不需要经常修改  `compile.js` 中的 `vendor`参数了。
 
 **`entry` `vendor`** 配置不包含的 JS 文件开发阶段和线上编译阶段都不能在页面中引用。
