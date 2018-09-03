@@ -1,10 +1,18 @@
 var config = require('../../compile/getConfig')()
 var exec = require('child_process').exec;
-exec('php -S 127.0.0.1:' + config.renderServerPort + ' -t ./mock/render', function(error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    if (error !== null) {
-        console.log('exec error: ' + error);
+var request = require('request')
+request('http://127.0.0.1:' + config.renderServerPort, function (err, res, body) {
+    if (body) {
+
     }
-});
-console.log('Render Server: ' + 'http://127.0.0.1:' + config.renderServerPort)
+    else {
+        exec('php -S 127.0.0.1:' + config.renderServerPort + ' -t ./mock/render', function(error, stdout, stderr) {
+            console.log('stdout: ' + stdout);
+            console.log('stderr: ' + stderr);
+            if (error !== null) {
+                console.log('exec error: ' + error.message);
+            }
+        });
+        console.log('Render Server: ' + 'http://127.0.0.1:' + config.renderServerPort)
+    }
+})

@@ -11,7 +11,7 @@
 ```shell
 # 你可以将 yarn切换 taobao 源
 # yarn config set registry https://registry.npm.taobao.org
-yarn global add fis3 nodemon webpack@3
+yarn global add fis3 babel-core babel-watch webpack@3
 ```
 
 ```shell

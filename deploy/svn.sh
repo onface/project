@@ -1,14 +1,11 @@
 !/bin/bash
-svnPath="_svn/test_project/www/client"
-
-cd ./deploy/_svn/test_project
+svnPath="_svn/project"
+cd ./deploy/${svnPath}
 svn update
 cd ../../../
-cpy "view**/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
-cd ../../
+cpy "view/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
 cpy "m/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
 cpy "__chunk/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
-cpy "__media/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
-cd ./deploy/_svn/test_project
+cd ./deploy/${svnPath}
 svn add * --force
 svn commit -m "sync file"

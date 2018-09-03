@@ -14,7 +14,7 @@ module.exports = {
 			entry: ['view/**/**entry.js'],
 			viewRelease: ['view/**'],
 			domain: '/',
-			hash: false,
+			hash: true,
 			noHashFile: [
 				'**.html'
 			],

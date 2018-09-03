@@ -93,7 +93,7 @@ const webpackConfig =  {
 		   { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=__chunk/media/[path][name]-[hash:6].[ext]' },
 		   { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=__chunk/media/[path][name]-[hash:6].[ext]' },
 		   { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=__chunk/media/[path][name]-[hash:6].[ext]' },
-		   { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=__chunk/media/[path][name]-[hash:6].[ext]'},
+		   { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=/[path][name]_[hash:7].[ext]'},
 		   { test: /\.json$/, loader: 'json-loader' }
 	    ],
 	},
