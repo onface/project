@@ -62,8 +62,8 @@ npm run s
 [m/base/rem/README.md](./m/base/rem/README.md)
 
 ```shell
-npm run dev:m
-npm run js:m
+npm run dev
+npm run js
 npm run s:m
 ```
 

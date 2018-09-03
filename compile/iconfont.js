@@ -4,6 +4,7 @@ var dir = process.env.dir || 'icons'
 var cssPath = path.join(__dirname, `../m/${dir}/iconfont.css`)
 var readPath
 var distPath = path.join(__dirname, `../m/${dir}/index.less`)
+var moduleDistPath = path.join(__dirname, `../m/${dir}/app.less`)
 if (fs.existsSync(cssPath)) {
     readPath = cssPath
 }
@@ -17,6 +18,9 @@ if(/ICONFONT\sCOMPLIED/.test(css)) {
     console.log('#################')
 }
 else {
+    var moduleLessSource = css.replace(/\.icon\-/g, '.m-icon-')
+        .replace(/\.iconfont/g, '.m-icon')
+        .replace(/font-size:16px;/g, '')
     var lessSource = css.replace(/\.icon-(.*):before\s*{\s*content:\s*"([^"]+)";\s*}/g, [
         '.icon-$1(){&:before { content: "$2"; .iconfont;}}',
         '.icon-$1A(){&:after { content: "$2"; .iconfont;}}',
@@ -28,8 +32,11 @@ else {
         .replace(/url\(\'iconfont/g, "url('./iconfont")
     lessSource = '// ICONFONT COMPLIED\r\n' + lessSource
     console.log('------ less ---------')
+    console.log(moduleLessSource)
+    console.log('---------------------')
     console.log(lessSource)
     console.log('------ less ---------')
+    fs.writeFileSync(moduleDistPath, moduleLessSource, 'utf-8')
     fs.writeFileSync(distPath, lessSource, 'utf-8')
     console.log(distPath + ' writeFile done!')
 }
