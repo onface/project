@@ -28,7 +28,7 @@ const webpackConfig =  {
 	output: {
 		path: path.resolve(__dirname, '../output'),
 		publicPath: '/',
-	    chunkFilename: '__chunk/[id].js',
+	    chunkFilename: config.viewPath + '/__chunk/[id].js',
 	    filename: '[name]',
 	},
 	module: {

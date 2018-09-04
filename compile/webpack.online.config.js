@@ -23,7 +23,7 @@ if (JSON.stringify(entryMap) === '{}') {
 }
 webpackConfig.entry = entryMap
 webpackConfig.output.publicPath = config.user.online[config.mode].domain
-webpackConfig.output.chunkFilename = `__chunk/[id]${config.user.online[config.mode].hash?'-[hash]':''}.js`
+webpackConfig.output.chunkFilename = `${config.viewPath}/__chunk/[id]${config.user.online[config.mode].hash?'-[hash]':''}.js`
 
 
 

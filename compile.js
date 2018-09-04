@@ -1,10 +1,9 @@
 const LessPluginFunctions = require('less-plugin-functions');
 const LessPluginAutoPrefix = require('less-plugin-autoprefix');
-var mode = process.env.compile || 'default'
 module.exports = {
 	// 开发阶段入口文件
 	entry: [
-		`{${process.env.e || 'view,view_**,m'}}/**/**entry.js`
+		`{${process.env.e || 'view,view_**,m'},_}/**/**entry.js`
 	],
 	// 不需要 webpack 编译但是需要在页面使用 <script> 引用的文件
 	vendor: [
@@ -15,13 +14,9 @@ module.exports = {
 	online: {
 		'default': {
 			entry: ['view/**/**entry.js'],
-			viewRelease: ['view/**'],
 			domain: '/',
-			hash: true,
-			noHashFile: [
-				'**.html',
-				'fis-source-map.json'
-			],
+			hash: false,
+			hashIgnore: [ '**.html', 'fis-source-map.json' ],
 			relative: false,
 			compress:true,
 			externals: {
@@ -33,13 +28,9 @@ module.exports = {
 		},
 		mobile: {
 			entry: ['view_mobile/**/**entry.js'],
-			viewRelease: ['view_mobile/**'],
 			domain: '/',
 			hash: false,
-			noHashFile: [
-				'**.html',
-				'fis-source-map.json'
-			],
+			hashIgnore: [ '**.html', 'fis-source-map.json' ],
 			relative: false,
 			compress:false,
 			externals: {

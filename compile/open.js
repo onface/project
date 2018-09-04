@@ -1,5 +1,5 @@
 var open = require("open")
 var config = require('./getConfig')()
-setTimeout(function () {
-    open("http://127.0.0.1:" + config.mockServerPort + '?若不显示则刷新页面')
-}, 500)
+var request = require('request')
+var url = "http://127.0.0.1:" + config.mockServerPort
+open(url)

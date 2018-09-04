@@ -1,9 +1,5 @@
 # onface/project
 
-[Mock server console](/fms/)
-
-[module](./m/README.md)
-
 ## Install
 
 - [安装 yarn](https://yarnpkg.com/zh-Hans/docs/install)
@@ -11,7 +7,7 @@
 ```shell
 # 你可以将 yarn切换 taobao 源
 # yarn config set registry https://registry.npm.taobao.org
-yarn global add fis3 babel-core babel-watch webpack@3
+yarn global add fis3 babel-core babel-watch webpack@4
 ```
 
 ```shell
@@ -29,14 +25,13 @@ compile/
 deploy/
 # 模块
 m/
-# 数据路由模拟
-mock/
-	default/	# 默认
-	mobile/		# 移动端
-	render/		# php渲染脚本
-# 默认视图
+	# 数据模拟服务器
+	m/mock/
+# 默认页面
 view/
-# 移动端视图
+# 移动端页面
+view_mobile/
+# redux示例页面
 view_mobile/
 # 用户编译配置（可自行根据项目进行适当更改）
 compile.js 	# 默认
@@ -46,7 +41,6 @@ output/
 
 
 ## Develop
-> 暂时不要同时运行多环境
 
 ### default
 
@@ -66,7 +60,15 @@ npm run s
 ```shell
 npm run dev
 npm run js
-npm run s:m
+mode=mobile npm run s
+```
+
+### redux
+
+```shell
+npm run dev
+npm run js
+mode=redux npm run s
 ```
 
 ## Manual

@@ -177,15 +177,13 @@ config.user.entry.some(function(glob){
         release: true
     })
 })
-// 
 fis.media('online1').match('{**.md,m/**.{less,css,js},view/**,view_**/**}', {
     release: false
 })
-config.user.online[config.mode].viewRelease.forEach(function (item) {
-    fis.media('online1').match(item, {
-        release: true
-    }, true)
-})
+
+fis.media('online1').match(`${config.viewPath}/**`, {
+    release: true
+}, true)
 
 fis.media('online1')
     .match('**/fis-source-map.json', {
@@ -200,7 +198,7 @@ fis.media('online3').match('**', {
     domain: config.user.online[config.mode].domain.replace(/\/$/,'')
 })
 
-config.user.online[config.mode].noHashFile.forEach(function (glob) {
+config.user.online[config.mode].hashIgnore.forEach(function (glob) {
     fis.media('online3').match(glob, {
         useHash: false
     })

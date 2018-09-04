@@ -3,9 +3,15 @@ var toPort = require('hash-to-port');
 var extend = require('extend');
 var path = require('path')
 module.exports = function () {
-	var mode = process.env.compile?process.env.compile: 'default'
+	var mode = process.env.mode?process.env.mode: 'default'
+	var viewPath = 'view'
+	if (mode !== 'default') {
+		viewPath = 'view_' + mode
+	}
 	var config = {
+		rootPath: path.resolve(__dirname, '../'),
 		mode: mode,
+		viewPath: viewPath,
 		livereloadServerPort:toPort('livereloadServerPort' + packageJson.name),
 		mockServerPort:toPort('mockServerPort' + mode + packageJson.name),
 		wepbackServerPort:toPort('wepbackServerPort' + packageJson.name),
