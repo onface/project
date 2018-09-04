@@ -12,8 +12,14 @@ module.exports = {
 	],
 	// 发布阶段配置
 	online: {
-		'default': {
+		// view/**
+		default: {
 			domain: '/',
+			release: {
+				unreleasable: [
+
+				]
+			},
 			hash: false,
 			hashIgnore: [ '**.html', 'fis-source-map.json' ],
 			relative: false,
@@ -25,8 +31,33 @@ module.exports = {
 			   'vue': 'Vue'
 		    }
 		},
+		// view_mobile/**
 		mobile: {
 			domain: '/',
+			release: {
+				unreleasable: [
+
+				]
+			},
+			hash: false,
+			hashIgnore: [ '**.html', 'fis-source-map.json' ],
+			relative: false,
+			compress:false,
+			externals: {
+			   'jquery': 'jQuery',
+			   'react': 'React',
+			   'react-dom': 'ReactDOM',
+			   'vue': 'Vue'
+		    }
+		},
+		// view_redux/**
+		redux: {
+			domain: '/',
+			release: {
+				unreleasable: [
+
+				]
+			},
 			hash: false,
 			hashIgnore: [ '**.html', 'fis-source-map.json' ],
 			relative: false,

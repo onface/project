@@ -177,13 +177,8 @@ config.user.entry.some(function(glob){
         release: true
     })
 })
-fis.media('online1').match('{**.md,m/**.{less,css,js},view/**,view_**/**}', {
-    release: false
-})
 
-fis.media('online1').match(`${config.viewPath}/**`, {
-    release: true
-}, true)
+
 
 fis.media('online1')
     .match('**/fis-source-map.json', {
@@ -208,6 +203,15 @@ if (config.user.online[config.mode].compress) {
         optimizer: fis.plugin('clean-css')
     })
 }
+config.user.online[config.mode].release.unreleasable.forEach(function (item) {
+    fis.media('online3').match(item, {
+        release: false
+    }, true)
+})
+fis.media('online3').match(`${config.viewPath}/**`, {
+    release: true
+}, true)
+
 config.user.fis(fis)
 fis.media('online3').match('__chunk/**', {
     useHash: false
