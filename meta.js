@@ -6,6 +6,7 @@ module.exports = {
             message: 'project name'
         }
     },
+    skipInterpolation: '{view,view_**,m,compile,deploy}/**',
     helpers: {
 
     },
