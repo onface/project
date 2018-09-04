@@ -1,5 +1,5 @@
 {
-	"name": "project",
+	"name": "{{name}}",
 	"scripts": {
 		"icon": "node ./compile/iconfont.js",
 		"dev": "rm -rf output && fis3 release -w -d ./output -r ./ -f compile/fis-conf.js",

@@ -1,0 +1,40 @@
+{
+    "res": {
+        "m/base/rem/meta.js": {
+            "uri": "/m/base/rem/meta_0d4df09.js",
+            "type": "js"
+        },
+        "view/common/entry.js": {
+            "uri": "/view/common/entry_16b47aa.js",
+            "type": "js",
+            "extras": {}
+        },
+        "view/common/index.css": {
+            "uri": "/view/common/index_fbcd0b5.css",
+            "type": "css"
+        },
+        "view/common/normalize.css": {
+            "uri": "/view/common/normalize_fbcd0b5.css",
+            "type": "css"
+        },
+        "view/react/entry.js": {
+            "uri": "/view/react/entry_b43ab32.js",
+            "type": "js",
+            "extras": {}
+        },
+        "view/react/index.css": {
+            "uri": "/view/react/index_e4aaf2f.css",
+            "type": "css"
+        },
+        "view/vue/entry.js": {
+            "uri": "/view/vue/entry_79760be.js",
+            "type": "js",
+            "extras": {}
+        },
+        "view/vue/index.css": {
+            "uri": "/view/vue/index_8dc2b04.css",
+            "type": "css"
+        }
+    },
+    "pkg": {}
+}

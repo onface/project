@@ -1,0 +1,36 @@
+{
+    "res": {
+        "m/base/rem/meta.js": {
+            "uri": "/m/base/rem/meta_0d4df09.js",
+            "type": "js"
+        },
+        "view/common/entry.js": {
+            "uri": "/view/common/entry_f92be3d.js",
+            "type": "js",
+            "extras": {}
+        },
+        "view/common/index.css": {
+            "uri": "/view/common/index_e989fba.css",
+            "type": "css"
+        },
+        "view/common/normalize.css": {
+            "uri": "/view/common/normalize_e989fba.css",
+            "type": "css"
+        },
+        "view/react/entry.js": {
+            "uri": "/view/react/entry_fe48dd6.js",
+            "type": "js",
+            "extras": {}
+        },
+        "view/react/index.css": {
+            "uri": "/view/react/index_cb67710.css",
+            "type": "css"
+        },
+        "view/vue/entry.js": {
+            "uri": "/view/vue/entry_496546d.js",
+            "type": "js",
+            "extras": {}
+        }
+    },
+    "pkg": {}
+}

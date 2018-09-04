@@ -1,0 +1,11 @@
+.reactNode {
+  border-bottom: 1px blue dotted;
+}
+.reactNode:before {
+  content: ' ';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: url(/view/react/onface_3c8f150.png);
+  background-size: 100%;
+}
