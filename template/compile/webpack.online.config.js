@@ -8,9 +8,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 
 var entryFiles = []
-config.user.online[config.mode].entry.forEach(function(fileReg){
-	entryFiles = entryFiles.concat(glob.sync(fileReg) || [])
-})
+entryFiles = entryFiles.concat(glob.sync(config.viewPath + '/**/**entry.js') || [])
 var entryMap = {}
 entryFiles.forEach(function(filePath){
 	entryMap[filePath] = [

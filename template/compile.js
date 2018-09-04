@@ -13,7 +13,6 @@ module.exports = {
 	// 发布阶段配置
 	online: {
 		'default': {
-			entry: ['view/**/**entry.js'],
 			domain: '/',
 			hash: false,
 			hashIgnore: [ '**.html', 'fis-source-map.json' ],
@@ -27,7 +26,6 @@ module.exports = {
 		    }
 		},
 		mobile: {
-			entry: ['view_mobile/**/**entry.js'],
 			domain: '/',
 			hash: false,
 			hashIgnore: [ '**.html', 'fis-source-map.json' ],

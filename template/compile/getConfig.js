@@ -18,6 +18,10 @@ module.exports = function () {
 		renderServerPort:toPort('renderServerPort' + packageJson.name),
 		user: require(path.join(__dirname, '../compile.js'))
 	}
+	if (typeof config.user.online[config.mode] !== 'object') {
+		throw new Error(`You need set /compile.js  online["${config.mode}"] = {/*...*/}`)
+	}
+
 	config.mockSettings = function (settings) {
 		var webpackServerUrl = 'http://127.0.0.1:' + config.wepbackServerPort
 		var renderServerUrl = 'http://127.0.0.1:' + config.renderServerPort
