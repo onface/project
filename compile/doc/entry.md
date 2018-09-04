@@ -10,15 +10,17 @@ onface-project 使用 [webpack](http://webpack.js.org/) 作为 JS 构建工具�
 
 ```js
 entry: [
-    `{${process.env.e || 'view,view_**,m'}}/**/**entry.js`
+    `{${process.env.e || 'view,view_**,m'},_}/**/**entry.js`
 ]
 ```
+
+> ,_ 是为了兼容 glob 语法，防止出现 `{view}/**/**entry.js` 导致的无法匹配，`{view,m}/**/**entry.js` 可以正常匹配 `view/` 目录下以 `entry.js` 为后缀的 JS 文件。
 
 默认运行 `npm run js` 运行时 entry 配置是
 
 ```js
 [
-    "{view,view_**,m}/**/**entry.js"
+    "{view,view_**,m,_}/**/**entry.js"
 ]
 ```
 
@@ -37,7 +39,7 @@ entry: [
 
 ```js
 [
-    "view/react/**/**entry.js"
+    "{view/react,_}/**/**entry.js"
 ]
 ```
 
