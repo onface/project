@@ -1,14 +1,4 @@
-!/bin/bash
-svnPath="_svn/project"
-cd ./deploy/${svnPath}
+#!/bin/bash
+cd ./deploy/_svn/project/
 svn update
-svn delete view
-svn delete m
-svn delete __chunk
 cd ../../../
-cpy "view/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
-cpy "m/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
-cpy "__chunk/**/*.*" "../deploy/${svnPath}"  --cwd=output --parents
-cd ./deploy/${svnPath}
-svn add * --force
-svn commit -m "sync file"
