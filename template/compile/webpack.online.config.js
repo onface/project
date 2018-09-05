@@ -8,7 +8,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 
 var entryFiles = []
-entryFiles = entryFiles.concat(glob.sync(config.viewPath + '/**/**entry.js') || [])
+entryFiles = entryFiles.concat(glob.sync(config.viewPath + '/' + config.user.online[config.mode].release.releasable) || [])
 var entryMap = {}
 entryFiles.forEach(function(filePath){
 	entryMap[filePath] = [
@@ -21,7 +21,7 @@ if (JSON.stringify(entryMap) === '{}') {
 }
 webpackConfig.entry = entryMap
 webpackConfig.output.publicPath = config.user.online[config.mode].domain
-webpackConfig.output.chunkFilename = `${config.viewPath}/__chunk/[id]${config.user.online[config.mode].hash?'-[hash]':''}.js`
+
 
 
 
@@ -33,6 +33,7 @@ webpackConfig.plugins = [
            'process.env.NODE_ENV': JSON.stringify('production')
         })
     ]
+let chunkHashName = ''
 if (config.user.online[config.mode].compress) {
 	webpackConfig.optimization = {
 		minimizer: [
@@ -42,8 +43,11 @@ if (config.user.online[config.mode].compress) {
 			})
 		]
 	}
+	// mode "production" 可以控制是否压缩
+	webpackConfig.mode = 'production'
+	chunkHashName = '_[hash]'
 }
-webpackConfig.mode = 'production'
+webpackConfig.output.chunkFilename = `${config.viewPath}/__chunk/[id]${chunkHashName}${config.user.online[config.mode].hash?'-[hash]':''}.js`
 webpackConfig.externals = config.user.online.externals
 webpackConfig.devtool = 'source-map'
 module.exports = config.user.webpackConfigOnline(webpackConfig)

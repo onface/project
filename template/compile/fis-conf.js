@@ -204,11 +204,12 @@ if (config.user.online[config.mode].compress) {
     })
 }
 config.user.online[config.mode].release.unreleasable.forEach(function (item) {
-    fis.media('online3').match(item, {
+    fis.media('online1').match(item, {
         release: false
     }, true)
 })
-fis.media('online3').match(`${config.viewPath}/**`, {
+
+fis.media('online1').match(`${config.viewPath}/**/**`, {
     release: true
 }, true)
 

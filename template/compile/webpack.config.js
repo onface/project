@@ -22,6 +22,13 @@ if (JSON.stringify(entryMap) === '{}') {
 	console.log('⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄')
 	throw new Error(`compile/webpack.config.js: must have entry\r\n entry: ${JSON.stringify(config.user.entry)}`)
 }
+function filterName(file) {
+	let pathName = '[path]'
+	if (/node_modules/.test(file)) {
+		pathName = config.viewPath + '/[path]'
+	}
+	return `${pathName}[name]_[hash:7].[ext]`
+}
 const webpackConfig =  {
 	mode: 'development',
 	entry: entryMap,
@@ -73,12 +80,63 @@ const webpackConfig =  {
 				],
 		        exclude: /node_modules/,
 		    },
-			{ test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=[path][name]-[hash:7].[ext]' },
-		    { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/font-woff&name=[path][name]-[hash:7].[ext]' },
-		    { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=application/octet-stream&name=[path][name]-[hash:7].[ext]' },
-		    { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?name=[path][name]-[hash:7].[ext]' },
-		    { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=1&minetype=image/svg+xml&name=[path][name]-[hash:7].[ext]' },
-		    { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i, loader: 'url-loader?limit=1&name=[path][name]_[hash:7].[ext]'},
+			{ test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 1,
+							minetype: 'application/font-woff',
+							name: filterName
+						}
+					}
+				]
+			},
+			{ test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 1,
+							minetype: 'application/octet-stream',
+							name: filterName
+						}
+					}
+				]
+			},
+			{ test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: filterName
+						}
+					}
+				]
+			},
+		    { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 1,
+							minetype: 'image/svg+xml',
+							name: filterName
+						}
+					}
+				]
+			},
+		    { test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 1,
+							name: filterName
+						}
+					}
+				]
+			},
 		    { test: /\.json$/, loader: 'json-loader' }
 	    ],
 	},
