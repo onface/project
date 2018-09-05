@@ -159,12 +159,6 @@ fis.match('**.less', {
     rExt:'css'
 })
 
-fis.match('**.js',{
-    release:false
-})
-
-
-
 /**
  * online
  */

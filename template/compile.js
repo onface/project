@@ -6,10 +6,10 @@ module.exports = {
 		`{${process.env.e || 'view,view_**,m'},_}/**/**entry.js`
 	],
 	// 不需要 webpack 编译但是需要在页面使用 <script> 引用的文件
-	// vendor 中不要包含 md,如果一点要包含
-	// 请删除  online[mode].release.unreleasable 中的 md 匹配规则
 	vendor: [
 		'm/base/rem/meta.js',
+		// 	vendor 中不要包含 md,如果一定要包含
+		// 	请删除  online[mode].release.unreleasable 中的 md 匹配规则
 		'm/vendor/**/**!(.md)'
 	],
 	// 发布阶段配置
@@ -18,7 +18,8 @@ module.exports = {
 		default: {
 			domain: '/',
 			release: {
-				// 不会被编译到 output/ 目录的文件，
+				// 不会被编译到 output/ 目录的文件。
+				// （无法在html中加载文件调用，但可以在 css 中 import 或在 JS 中 import require)
 				// entry vendor 文件除外
 				unreleasable: [
 					'{view,view_**}/**',
