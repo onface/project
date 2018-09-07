@@ -46,6 +46,9 @@ const htmlEntryScriptParser = function (content, file) {
 fis.match('**.md', {
     parser:[
         function markrunParser(content, file){
+            if (fis.project.currentMedia() !== 'dev') {
+                return content
+            }
             var html = markrun(
                 content,
                 {
@@ -159,6 +162,10 @@ fis.match('**.less', {
     rExt:'css'
 })
 
+fis.match('**.js', {
+    release: false
+})
+
 /**
  * online
  */
@@ -171,8 +178,6 @@ config.user.entry.some(function(glob){
         release: true
     })
 })
-
-
 
 fis.media('online1')
     .match('**/fis-source-map.json', {
@@ -197,7 +202,7 @@ if (config.user.online[config.mode].compress) {
         optimizer: fis.plugin('clean-css')
     })
 }
-config.user.online[config.mode].release.unreleasable.forEach(function (item) {
+['{view,view_**}/**'].concat(config.user.online[config.mode].unreleasable).forEach(function (item) {
     fis.media('online1').match(item, {
         release: false
     }, true)

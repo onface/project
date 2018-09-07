@@ -27,7 +27,11 @@ function filterName(file) {
 	if (/node_modules/.test(file)) {
 		pathName = config.viewPath + '/[path]'
 	}
-	return `${pathName}[name]_[hash:7].[ext]`
+	var hashName = ''
+	if (config.user.online[config.mode].hash) {
+		hashName = '_[hash:7]'
+	}
+	return `${pathName}[name]${hashName}.[ext]`
 }
 const webpackConfig =  {
 	mode: 'development',

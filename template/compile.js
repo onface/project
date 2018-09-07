@@ -1,9 +1,10 @@
-const LessPluginFunctions = require('less-plugin-functions');
-const LessPluginAutoPrefix = require('less-plugin-autoprefix');
+const LessPluginFunctions = require('less-plugin-functions')
+const LessPluginAutoPrefix = require('less-plugin-autoprefix')
+const extend = require('safe-extend')
 module.exports = {
 	// 开发阶段入口文件
 	entry: [
-		`{${process.env.e || 'view,view_**,m'},_}/**/**entry.js`
+		`{${process.env.e || 'view,view_**,m'},_}/**/**entry.js` // 后缀必须使用 entry.js
 	],
 	// 不需要 webpack 编译但是需要在页面使用 <script> 引用的文件
 	vendor: [
@@ -15,75 +16,11 @@ module.exports = {
 	// 发布阶段配置
 	online: {
 		// view/**
-		default: {
-			domain: '/',
-			release: {
-				// 不会被编译到 output/ 目录的文件。
-				// （无法在html中加载文件调用，但可以在 css 中 import 或在 JS 中 import require)
-				// entry vendor 文件除外
-				unreleasable: [
-					'{view,view_**}/**',
-					'**.{md,js}',
-					'm/**/**.{less,css}'
-				],
-				// view/ 下的  entry.js 后缀的文件会被编译
-				releasable: [ '**/**entry.js' ]
-			},
-			hash: true,
-			hashIgnore: [ '**.html', 'fis-source-map.json' ],
-			relative: false,
-			compress:false,
-			externals: {
-			   'jquery': 'jQuery',
-			   'react': 'React',
-			   'react-dom': 'ReactDOM',
-			   'vue': 'Vue'
-		    }
-		},
+		default: onlineConfig(),
 		// view_mobile/**
-		mobile: {
-			domain: '/',
-			release: {
-				unreleasable: [
-					'{view,view_**}/**',
-					'**.{md,js}',
-					'm/**/**.{less,css}'
-				],
-				releasable: [ '**/**entry.js' ]
-			},
-			hash: false,
-			hashIgnore: [ '**.html', 'fis-source-map.json' ],
-			relative: false,
-			compress:false,
-			externals: {
-			   'jquery': 'jQuery',
-			   'react': 'React',
-			   'react-dom': 'ReactDOM',
-			   'vue': 'Vue'
-		    }
-		},
+		mobile: onlineConfig(),
 		// view_redux/**
-		redux: {
-			domain: '/',
-			release: {
-				unreleasable: [
-					'{view,view_**}/**',
-					'**.{md,js}',
-					'm/**/**.{less,css}'
-				],
-				releasable: [ '**/**entry.js' ]
-			},
-			hash: false,
-			hashIgnore: [ '**.html', 'fis-source-map.json' ],
-			relative: false,
-			compress:false,
-			externals: {
-			   'jquery': 'jQuery',
-			   'react': 'React',
-			   'react-dom': 'ReactDOM',
-			   'vue': 'Vue'
-		    }
-		}
+		redux: onlineConfig()
 	},
 	moduleTemplateDefaultData:{
 		tpl: 'view',
@@ -97,21 +34,9 @@ module.exports = {
         ]
 	},
 	babel:{
-		"presets": [
-			"es2015"
-		],
+		"presets": ["@babel/preset-env", "@babel/preset-react"],
 		"plugins": [
-			"react-hot-loader/babel",
-			[
-				 "transform-react-jsx",
-				 {"pragma": "require(\"react\").createElement"}
-			],
-			"transform-flow-strip-types",
-			"syntax-flow",
-			"syntax-jsx",
-			"transform-react-display-name",
-			"transform-decorators-legacy",
-			"transform-class-properties"
+			"react-hot-loader/babel"
 		]
 	},
 	fis: function (fis) {
@@ -137,4 +62,30 @@ module.exports = {
 		'Dockerfile',
 		'output_online'
 	]
+}
+function onlineConfig(config) {
+	config = config || {}
+	return extend(
+		{
+			domain: '/',
+			// 不会被编译到 output/ 目录的文件。
+			// （无法在html中加载文件调用，但可以在 css 中 import 或在 JS 中 import require)
+			// entry vendor 文件除外
+			unreleasable: [
+				'**.md',
+				'm/**/**.{less,css}'
+			],
+			hash: false,
+			hashIgnore: [ '**.html', 'fis-source-map.json' ],
+			relative: false,
+			compress:false,
+			externals: {
+			   'jquery': 'jQuery',
+			   'react': 'React',
+			   'react-dom': 'ReactDOM',
+			   'vue': 'Vue'
+			}
+		},
+		config
+	)
 }

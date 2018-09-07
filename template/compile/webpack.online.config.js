@@ -6,9 +6,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const glob = require('glob')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-
 var entryFiles = []
-entryFiles = entryFiles.concat(glob.sync(config.viewPath + '/' + config.user.online[config.mode].release.releasable) || [])
+entryFiles = entryFiles.concat(glob.sync(config.viewPath + '/' + '**/**entry.js') || [])
 var entryMap = {}
 entryFiles.forEach(function(filePath){
 	entryMap[filePath] = [
@@ -22,9 +21,6 @@ if (JSON.stringify(entryMap) === '{}') {
 webpackConfig.entry = entryMap
 webpackConfig.output.publicPath = config.user.online[config.mode].domain
 
-
-
-
 webpackConfig.plugins = [
 		new VueLoaderPlugin(),
         new webpack.NamedModulesPlugin(),
@@ -34,6 +30,9 @@ webpackConfig.plugins = [
         })
     ]
 let chunkHashName = ''
+if (config.user.online[config.mode].hash) {
+	chunkHashName = '_[hash]'
+}
 if (config.user.online[config.mode].compress) {
 	webpackConfig.optimization = {
 		minimizer: [
@@ -45,7 +44,6 @@ if (config.user.online[config.mode].compress) {
 	}
 	// mode "production" 可以控制是否压缩
 	webpackConfig.mode = 'production'
-	chunkHashName = '_[hash]'
 }
 webpackConfig.output.chunkFilename = `${config.viewPath}/__chunk/[id]${chunkHashName}${config.user.online[config.mode].hash?'-[hash]':''}.js`
 webpackConfig.externals = config.user.online.externals
