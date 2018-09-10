@@ -20,4 +20,14 @@ unreleasable file 是 [fis](http://fis.baidu.com/) 提供的概念。在 `compil
 
 **部署阶段：**
 
-`m/` 目录下的 `css,less,js` 都属于 unreleasable file。 （模块的文本代码资源都应该通过 `{view,view_**}/**.{js,css}` 引用，图片除外）
+因为 `compile.js` 的 `online`中默认配置了：
+
+```js
+unreleasable: [
+    '**.md',
+    'm/**/**.{less,css}'
+]
+```
+
+并且非 `entry.js` 后缀的 JS 文件都属于 unreleasable file，  
+所以`m/` 目录下的 `css,less,js` 都属于 unreleasable file。 （模块的文本代码资源都应该通过 `{view,view_**}/**.{js,css}` 引用，图片除外）
