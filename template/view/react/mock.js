@@ -1,6 +1,5 @@
-module.exports = function (app) {
-    app.view({
-        url: '/react',
-        template: '/view/react/index.html'
+module.exports = function (mock) {
+    mock.render('/react', {
+        view: 'view/react/index.html'
     })
 }

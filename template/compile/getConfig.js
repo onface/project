@@ -2,6 +2,7 @@ var packageJson = require('../package.json')
 var toPort = require('hash-to-port');
 var extend = require('extend');
 var path = require('path')
+var userConfig = require(path.join(__dirname, '../compile.js'))
 module.exports = function () {
 	var mode = process.env.mode?process.env.mode: 'default'
 	var viewPath = 'view'
@@ -12,11 +13,11 @@ module.exports = function () {
 		rootPath: path.resolve(__dirname, '../'),
 		mode: mode,
 		viewPath: viewPath,
-		livereloadServerPort:toPort('livereloadServerPort' + packageJson.name),
-		mockServerPort:toPort('mockServerPort' + mode + packageJson.name),
-		wepbackServerPort:toPort('wepbackServerPort' + packageJson.name),
-		renderServerPort:toPort('renderServerPort' + packageJson.name),
-		user: require(path.join(__dirname, '../compile.js'))
+		livereloadServerPort:toPort('livereloadServerPort' + userConfig.name),
+		mockServerPort:toPort('mockServerPort' + mode + userConfig.name),
+		wepbackServerPort:toPort('wepbackServerPort' + userConfig.name),
+		renderServerPort:toPort('renderServerPort' + userConfig.name),
+		user: userConfig
 	}
 	if (typeof config.user.online[config.mode] !== 'object') {
 		throw new Error(`You need set /compile.js  online["${config.mode}"] = {/*...*/}`)

@@ -1,6 +1,5 @@
 module.exports = function (app) {
-    app.view({
-        url: '/vue',
-        template: '/view/vue/index.html'
+    app.render('/vue', {
+        view: 'view/vue/index.html'
     })
 }

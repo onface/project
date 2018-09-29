@@ -2,6 +2,7 @@ const LessPluginFunctions = require('less-plugin-functions')
 const LessPluginAutoPrefix = require('less-plugin-autoprefix')
 const extend = require('safe-extend')
 module.exports = {
+	name: '{{ name }}',
 	// 开发阶段入口文件
 	entry: [
 		`{${process.env.e || 'view,view_**,m'},_}/**/**entry.js` // 后缀必须使用 entry.js
