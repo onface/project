@@ -1,6 +1,5 @@
-module.exports = function (app) {
-    app.view({
-        url: '/home',
-        template: '/view_redux/index/index.html'
+module.exports = function (mock) {
+    mock.render('/home'. {
+        view: 'view_redux/index/index.html'
     })
 }

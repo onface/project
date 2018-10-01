@@ -1,3 +1,3 @@
 var node = document.createElement('div')
-node.innerHTML = 'div'
+node.innerHTML = 'appendchild: ' + new Date().getTime()
 document.body.appendChild(node)
