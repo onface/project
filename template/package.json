@@ -69,7 +69,7 @@
 		"vue": "^2.5.9",
 		"vue-loader": "^15.4.1",
 		"vue-template-compiler": "^2.5.9",
-		"webmock": "^0.1.0",
+		"webmock": "^0.1.1",
 		"webpack": "4",
 		"webpack-cli": "^3.1.0",
 		"webpack-dev-middleware": "^3.2.0",
