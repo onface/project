@@ -6,7 +6,7 @@ require('./render/php.js')
 module.exports = function (mockFiles) {
     var { mock, app} = Webmock.express({
         port: config.mockServerPort,
-        renderViewRoot: path.join(config.rootPath, 'output'),
+        renderRoot: path.join(config.rootPath, 'output'),
         static: path.join(config.rootPath, 'output'),
         render: {
             engine: 'php'
