@@ -7,4 +7,33 @@ var mockFiles = glob.sync(`${config.viewPath}/**/mock.js`, {
     realpath: true
 })
 var startFilePath = path.resolve(__dirname, config.mode + '.js')
-require(startFilePath)(mockFiles)
+var mockConfig = {
+    dataAutoFill: [
+        {
+            key: 'type',
+            replace: 'rType',
+            replaceResponseType: {
+//                 'pass': 'success',
+//                 'fail': 'error',
+                '::default': 'pass'
+            }
+        },
+//         {
+//             key: 'data',
+//             replace: 'root',
+//             replaceRootIgnore: ['msg']
+//         }
+    ],
+    renderRoot: path.join(config.rootPath, 'output'),
+    static: path.join(config.rootPath, 'output'),
+    render: {
+        engine: 'php'
+    },
+    renderEngine: {
+        'php': {
+            server: 'http://127.0.0.1:' + config.renderServerPort
+        }
+    },
+    port: config.mockServerPort
+}
+require(startFilePath)(mockFiles, mockConfig)
