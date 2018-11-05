@@ -3,20 +3,8 @@ var config = require('../../compile/getConfig')()
 var path = require('path')
 var proxy = require('express-http-proxy')
 require('./render/php.js')
-module.exports = function (mockFiles) {
-    var { mock, app} = Webmock.express({
-        port: config.mockServerPort,
-        renderRoot: path.join(config.rootPath, 'output'),
-        static: path.join(config.rootPath, 'output'),
-        render: {
-            engine: 'php'
-        },
-        renderEngine: {
-            'php': {
-                server: 'http://127.0.0.1:' + config.renderServerPort
-            }
-        }
-    })
+module.exports = function (mockFiles, mockConfig) {
+    var { mock, app} = Webmock.express(mockConfig)
     setTimeout(function () {
         // last connect
         app.use(proxy('http://127.0.0.1:' + config.wepbackServerPort))
