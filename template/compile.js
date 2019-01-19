@@ -12,7 +12,8 @@ module.exports = {
 		'm/base/rem/meta.js',
 		// 	vendor 中不要包含 md,如果一定要包含
 		// 	请删除  online[mode].release.unreleasable 中的 md 匹配规则
-		'm/vendor/**/**!(.md)'
+		'm/vendor/**/**!(.md)',
+		'm/polyfile/**.js',
 	],
 	// 发布阶段配置
 	online: {

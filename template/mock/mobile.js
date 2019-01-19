@@ -1,5 +1,5 @@
 var Webmock = require('webmock')
-var config = require('../../compile/getConfig')()
+var config = require('../compile/getConfig')()
 var path = require('path')
 var proxy = require('express-http-proxy')
 require('./render/php.js')

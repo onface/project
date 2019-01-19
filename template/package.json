@@ -4,7 +4,7 @@
 		"icon": "node ./compile/iconfont.js",
 		"dev": "rm -rf output && fis3 release -w -d ./output -r ./ -f compile/fis-conf.js",
 		"js": "node ./compile/webpack-dev-server.js",
-		"s": "node compile/open && babel-watch m/mock/index.js",
+		"s": "node compile/open && babel-watch mock/index.js",
 		"online:1": "rm -rf output && fis3 release online1 -d ./output -r ./ -f compile/fis-conf.js",
 		"online:2": "./node_modules/webpack/bin/webpack.js --progress  --config ./compile/webpack.online.config.js",
 		"online:3": "fis3 release online3  -d ./output_online  -r ./output -f compile/fis-conf.js",
