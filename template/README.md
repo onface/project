@@ -50,26 +50,6 @@ npm run js
 npm run s
 ```
 
-### mobile
-
-> mobile use rem
-
-[onface/less-rem](https://github.com/onface/less-rem)  
-[m/base/rem/README.md](./m/base/rem/README.md)
-
-```shell
-npm run dev
-npm run js
-mode=mobile npm run s
-```
-
-### redux
-
-```shell
-npm run dev
-npm run js
-mode=redux npm run s
-```
 
 ## Manual
 
@@ -88,7 +68,7 @@ yarn global add cpy-cli
 
 ```shell
 # 打包生产环境代码
-npm run online
+npm run release
 # 更新 svn (每个项目只需要运行一次)
 sh ./deploy/svn-co.sh
 # 发布

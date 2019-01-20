@@ -11,7 +11,7 @@ const util = require("./util")
 /**
  * relative
  */
-if (config.user.online.relative) {
+if (config.user.release.relative) {
     fis.hook(require('fis3-hook-relative'))
     fis.match('**',{
         relative: true
@@ -167,19 +167,19 @@ fis.match('**.js', {
 })
 
 /**
- * online
+ * release
  */
 
 config.user.entry.some(function(glob){
-    fis.media('online1').match(glob, {
+    fis.media('release1').match(glob, {
         release: true
     })
-    fis.media('online3').match(glob, {
+    fis.media('release3').match(glob, {
         release: true
     })
 })
 
-fis.media('online1')
+fis.media('release1')
     .match('**/fis-source-map.json', {
         parser: [
             function (content) {
@@ -187,46 +187,38 @@ fis.media('online1')
             }
         ]
     })
-fis.media('online3').match('**', {
-    useHash: config.user.online[config.mode].hash,
-    domain: config.user.online[config.mode].domain.replace(/\/$/,'')
+fis.media('release3').match('**', {
+    useHash: config.user.release[config.view].hash,
+    domain: config.user.release[config.view].domain.replace(/\/$/,'')
 })
 
-config.user.online[config.mode].hashIgnore.forEach(function (glob) {
-    fis.media('online3').match(glob, {
+config.user.release[config.view].hashIgnore.forEach(function (glob) {
+    fis.media('release3').match(glob, {
         useHash: false
     })
 })
-if (config.user.online[config.mode].compress) {
-    fis.media('online3').match('*.{css,less}', {
+if (config.user.release[config.view].compress) {
+    fis.media('release3').match('*.{css,less}', {
         optimizer: fis.plugin('clean-css')
     })
 }
-['{view,view_**}/**'].concat(config.user.online[config.mode].unreleasable).forEach(function (item) {
-    fis.media('online1').match(item, {
+['{view,view_**}/**'].concat(config.user.release[config.view].unreleasable).forEach(function (item) {
+    fis.media('release1').match(item, {
         release: false
     }, true)
 })
 
-fis.media('online1').match(`${config.viewPath}/**/**`, {
+fis.media('release1').match(`${config.viewPath}/**/**`, {
     release: true
 }, true)
 
 config.user.fis(fis)
-fis.media('online3').match('__chunk/**', {
+fis.media('release3').match('__chunk/**', {
     useHash: false
 }).match('__chunk/**', {
     release:true
 }, 999)
 
-/**
- * vendor
- */
-config.user.vendor.forEach(function (glob) {
-    fis.match(glob, {
-        release: true
-    }, 998)
-})
 
 /**
  * ignore
@@ -235,4 +227,13 @@ config.user.ignore.forEach(function (glob) {
     fis.match(glob, {
         release: false
     }, 999)
+})
+
+/**
+ * vendor
+ */
+config.user.vendor.forEach(function (glob) {
+    fis.match(glob, {
+        release: true
+    }, 998)
 })

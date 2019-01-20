@@ -43,8 +43,8 @@ entry: [
 ]
 ```
 
-## online.default.entry
+## release.default.entry
 
-`online.default.entry` 和 `online.mobile.entry` 是发布阶段的页面入口文件配置。
+`release.default.entry` 和 `release.mobile.entry` 是发布阶段的页面入口文件配置。
 
-分别对应运行  `npm run online` 和 `compile=mobile npm run online` 时候的页面入口文件
+分别对应运行  `npm run release` 和 `compile=mobile npm run release` 时候的页面入口文件

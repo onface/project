@@ -7,6 +7,7 @@
 export default {
     name: 'app',
     data () {
+        console.log("data")
         return {
             title: 'vue node'
         }

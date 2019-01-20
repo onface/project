@@ -5,11 +5,11 @@
 		"dev": "rm -rf output && fis3 release -w -d ./output -r ./ -f compile/fis-conf.js",
 		"js": "node ./compile/webpack-dev-server.js",
 		"s": "node compile/open && babel-watch mock/index.js",
-		"online:1": "rm -rf output && fis3 release online1 -d ./output -r ./ -f compile/fis-conf.js",
-		"online:2": "./node_modules/webpack/bin/webpack.js --progress  --config ./compile/webpack.online.config.js",
-		"online:3": "fis3 release online3  -d ./output_online  -r ./output -f compile/fis-conf.js",
-		"online:4": "rm -rf output && mv output_online output",
-		"online": "npm run online:1 && npm run online:2 && npm run online:3 && npm run online:4"
+		"release:1": "rm -rf output && fis3 release release1 -d ./output -r ./ -f compile/fis-conf.js",
+		"release:2": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --progress  --config ./compile/webpack.release.config.js",
+		"release:3": "fis3 release release3  -d ./output_release  -r ./output -f compile/fis-conf.js",
+		"release:4": "rm -rf output && mv output_release output",
+		"release": "npm run release:1 && npm run release:2 && npm run release:3 && npm run release:4"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.0.0",
@@ -25,6 +25,7 @@
 		"@babel/preset-react": "^7.0.0",
 		"@babel/preset-stage-0": "^7.0.0",
 		"@babel/runtime": "^7.0.0",
+		"babel-core": "^6.26.3",
 		"babel-loader": "^8.0.2",
 		"babel-watch": "^2.0.7",
 		"body-parser": "^1.18.3",
@@ -77,14 +78,13 @@
 		"webpack-hot-middleware": "^2.23.0"
 	},
 	"dependencies": {
-		"babel-core": "^6.26.3",
 		"button.react": "^0.3.6",
 		"calling": "^0.3.0",
 		"checkbox.react": "^0.3.7",
 		"classnames": "^2.2.5",
+		"extend2": "^1.0.0",
 		"icon.react": "^0.2.2",
-		"jquery": "^3.2.1",
-		"json-modif": "^0.1.4",
+		"jquery": "^3.3.1",
 		"mockjs": "^1.0.1-beta3",
 		"prop-types": "^15.6.1",
 		"react": "^16.2.0",

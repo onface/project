@@ -16,37 +16,39 @@ entryFiles.forEach(function(filePath){
 })
 if (JSON.stringify(entryMap) === '{}') {
 	console.log('⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄⌄')
-	throw new Error(`compile/webpack.online.config.js: must have entry\r\n entry: ${JSON.stringify(config.user.online.entry)}`)
+	throw new Error(`compile/webpack.release.config.js: must have entry\r\n entry: ${JSON.stringify(config.user.release.entry)}`)
 }
 webpackConfig.entry = entryMap
-webpackConfig.output.publicPath = config.user.online[config.mode].domain
+webpackConfig.output.publicPath = config.user.release[config.view].domain
 
 webpackConfig.plugins = [
 		new VueLoaderPlugin(),
         new webpack.NamedModulesPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
-           'process.env.NODE_ENV': JSON.stringify('production')
+			'process.env': {
+			    NODE_ENV: '"production"'
+			 }
         })
-    ]
+    ].filter(function (item) {return item})
 let chunkHashName = ''
-if (config.user.online[config.mode].hash) {
+if (config.user.release[config.view].hash) {
 	chunkHashName = '_[hash]'
 }
-if (config.user.online[config.mode].compress) {
+if (config.user.release[config.view].compress) {
 	webpackConfig.optimization = {
 		minimizer: [
 			new UglifyJsPlugin({
 				cache: true,
-				sourceMap: true
+				sourceMap: Boolean(config.user.release[config.view].sourceMap)
 			})
 		]
 	}
-	// mode "production" 可以控制是否压缩
-	webpackConfig.mode = 'production'
 }
-webpackConfig.output.chunkFilename = `${config.viewPath}/__chunk/[id]${chunkHashName}${config.user.online[config.mode].hash?'-[hash]':''}.js`
-webpackConfig.externals = config.user.online.externals
-webpackConfig.devtool = 'source-map'
-module.exports = config.user.webpackConfigOnline(webpackConfig)
-module.exports = webpackConfig
+webpackConfig.mode = 'production'
+webpackConfig.output.chunkFilename = `${config.viewPath}/__chunk/[id]${chunkHashName}${config.user.release[config.view].hash?'-[hash]':''}.js`
+webpackConfig.externals = config.user.release[config.view].externals
+if (config.user.release[config.view].sourceMap) {
+	webpackConfig.devtool = config.user.release[config.view].sourceMap
+}
+module.exports = config.user.webpackConfigRelease(webpackConfig)

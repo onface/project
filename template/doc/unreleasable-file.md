@@ -20,7 +20,7 @@ unreleasable file 是 [fis](http://fis.baidu.com/) 提供的概念。在 `compil
 
 **部署阶段：**
 
-因为 `compile.js` 的 `online`中默认配置了：
+因为 `compile.js` 的 `release`中默认配置了：
 
 ```js
 unreleasable: [

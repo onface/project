@@ -2,25 +2,33 @@ var packageJson = require('../package.json')
 var toPort = require('hash-to-port');
 var extend = require('extend');
 var path = require('path')
-var userConfig = require(path.join(__dirname, '../compile.js'))
+var mode = 'default'
+var extend2 = require('extend2')
+if (process.env.mode) {
+	mode = process.env.mode
+}
+var defaultUserConfig = require(path.join(__dirname, '../compile.default.js'))
+var modeUserConfig = require(path.join(__dirname, '../compile.' + mode + '.js'))
+var userConfig = extend2(true, extend(true, {}, defaultUserConfig), modeUserConfig)
 module.exports = function () {
-	var mode = process.env.mode?process.env.mode: 'default'
+	var view = process.env.view?process.env.view: 'default'
 	var viewPath = 'view'
-	if (mode !== 'default') {
-		viewPath = 'view_' + mode
+	if (view !== 'default') {
+		viewPath = 'view_' + view
 	}
 	var config = {
 		rootPath: path.resolve(__dirname, '../'),
 		mode: mode,
+		view: view,
 		viewPath: viewPath,
 		livereloadServerPort:toPort('livereloadServerPort' + userConfig.name),
-		mockServerPort:toPort('mockServerPort' + mode + userConfig.name),
+		mockServerPort:toPort('mockServerPort' + view + userConfig.name),
 		wepbackServerPort:toPort('wepbackServerPort' + userConfig.name),
 		renderServerPort:toPort('renderServerPort' + userConfig.name),
 		user: userConfig
 	}
-	if (typeof config.user.online[config.mode] !== 'object') {
-		throw new Error(`You need set /compile.js  online["${config.mode}"] = {/*...*/}`)
+	if (typeof config.user.release[config.view] !== 'object') {
+		throw new Error(`You need set /compile.js  release["${config.view}"] = {/*...*/}`)
 	}
 
 	config.mockSettings = function (settings) {

@@ -1,6 +1,5 @@
 const LessPluginFunctions = require('less-plugin-functions')
 const LessPluginAutoPrefix = require('less-plugin-autoprefix')
-const extend = require('safe-extend')
 module.exports = {
 	name: '{{ name }}',
 	// 开发阶段入口文件
@@ -11,18 +10,35 @@ module.exports = {
 	vendor: [
 		'm/base/rem/meta.js',
 		// 	vendor 中不要包含 md,如果一定要包含
-		// 	请删除  online[mode].release.unreleasable 中的 md 匹配规则
+		// 	请删除  release[view].release.unreleasable 中的 md 匹配规则
 		'm/vendor/**/**!(.md)',
-		'm/polyfile/**.js',
+		'm/vendor/**/**.html',
+		'm/vendor/**/**.js',
 	],
 	// 发布阶段配置
-	online: {
+	release: {
 		// view/**
-		default: onlineConfig(),
-		// view_mobile/**
-		mobile: onlineConfig(),
-		// view_redux/**
-		redux: onlineConfig()
+		default: {
+			domain: '/',
+			// 不会被编译到 output/ 目录的文件。
+			// （无法在html中加载文件调用，但可以在 css 中 import 或在 JS 中 import require)
+			// entry vendor 文件除外
+			unreleasable: [
+				'**.md',
+				'm/**/**.{less,css}'
+			],
+			hash: false,
+			hashIgnore: [ '**.html', 'fis-source-map.json' ],
+			relative: false,
+			compress:false,
+			sourceMap: 'source-map', // or false
+			externals: {
+			   'jquery': 'jQuery',
+			   'react': 'React',
+			   'react-dom': 'ReactDOM',
+			   'vue': 'Vue'
+			}
+		}
 	},
 	moduleTemplateDefaultData:{
 		tpl: 'view',
@@ -41,7 +57,7 @@ module.exports = {
 			"@babel/preset-react"
 		],
 		"plugins": [
-			"react-hot-loader/babel",
+			process.env.NODE_ENV !== 'production' ? "react-hot-loader/babel": undefined,
 			"@babel/plugin-transform-runtime",
 		    "@babel/plugin-proposal-class-properties",
 		    "@babel/plugin-proposal-object-rest-spread",
@@ -57,12 +73,13 @@ module.exports = {
 	webpackConfigDev: function (webpackConfig) {
 		return webpackConfig
 	},
-	webpackConfigOnline: function (webpackConfig) {
+	webpackConfigRelease: function (webpackConfig) {
 		return webpackConfig
 	},
 	ignore: [
 	    'm/template.html',
 	    '**.vue',
+		'*.log',
 	    'deploy/**',
 	    'compile/**',
 	    'mock/**',
@@ -70,32 +87,7 @@ module.exports = {
 		'nodemon.json',
 		'yarn.lock',
 		'Dockerfile',
-		'output_online'
+		'output_release',
+		'doc/**'
 	]
-}
-function onlineConfig(config) {
-	config = config || {}
-	return extend(
-		{
-			domain: '/',
-			// 不会被编译到 output/ 目录的文件。
-			// （无法在html中加载文件调用，但可以在 css 中 import 或在 JS 中 import require)
-			// entry vendor 文件除外
-			unreleasable: [
-				'**.md',
-				'm/**/**.{less,css}'
-			],
-			hash: false,
-			hashIgnore: [ '**.html', 'fis-source-map.json' ],
-			relative: false,
-			compress:false,
-			externals: {
-			   'jquery': 'jQuery',
-			   'react': 'React',
-			   'react-dom': 'ReactDOM',
-			   'vue': 'Vue'
-			}
-		},
-		config
-	)
 }

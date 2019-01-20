@@ -6,7 +6,7 @@ var mockFiles = glob.sync(`${config.viewPath}/**/mock.js`, {
     root: config.rootPath,
     realpath: true
 })
-var startFilePath = path.resolve(__dirname, config.mode + '.js')
+var startFilePath = path.resolve(__dirname, config.view + '.js')
 var mockConfig = {
     dataAutoFill: [
         {

@@ -28,10 +28,16 @@ function filterName(file) {
 		pathName = config.viewPath + '/[path]'
 	}
 	var hashName = ''
-	if (config.user.online[config.mode].hash) {
+	if (config.user.release[config.view].hash) {
 		hashName = '_[hash:7]'
 	}
 	return `${pathName}[name]${hashName}.[ext]`
+}
+var babelConfig = config.user.babel
+if (Array.isArray(babelConfig.plugins)) {
+	babelConfig.plugins = babelConfig.plugins.filter(function (item) {
+		return item
+	})
 }
 const webpackConfig =  {
 	mode: 'development',
@@ -67,7 +73,7 @@ const webpackConfig =  {
 		    {
 		        test: /\.js$/,
 		        loader: 'babel-loader',
-		        options: config.user.babel ,
+		        options: babelConfig ,
 		        exclude: /node_modules/
 		    },
 		    {
