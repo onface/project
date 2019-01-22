@@ -27,7 +27,7 @@ module.exports = function () {
 		renderServerPort:toPort('renderServerPort' + userConfig.name),
 		user: userConfig
 	}
-	if (typeof config.user.release[config.view] !== 'object') {
+	if (typeof config.user.release !== 'object') {
 		throw new Error(`You need set /compile.js  release["${config.view}"] = {/*...*/}`)
 	}
 

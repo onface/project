@@ -951,7 +951,7 @@ array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
 
-array-flatten@^2.1.0, array-flatten@^2.1.1:
+array-flatten@^2.1.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/array-flatten/-/array-flatten-2.1.1.tgz#426bb9da84090c1838d812c8150af20a8331e296"
 
@@ -1442,14 +1442,6 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
-button.react@^0.3.6:
-  version "0.3.6"
-  resolved "https://registry.npmjs.org/button.react/-/button.react-0.3.6.tgz#68c62e78c25c7c885003f21017300a27a3a8e31c"
-  dependencies:
-    extend "^3.0.1"
-    prop-types "^15.6.0"
-    util.react "^1.4.1"
-
 bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
@@ -1485,15 +1477,6 @@ cache-base@^1.0.1:
     to-object-path "^0.3.0"
     union-value "^1.0.0"
     unset-value "^1.0.0"
-
-calling@^0.3.0:
-  version "0.3.6"
-  resolved "https://registry.npmjs.org/calling/-/calling-0.3.6.tgz#cae8ed86ba811fc104ec0c9523851f0cd4645ca7"
-  dependencies:
-    delayeach "^0.2.0"
-    json-format "^1.0.1"
-    json-modif "^0.3.0"
-    safe-extend "^3.0.4"
 
 camelcase@^4.1.0:
   version "4.1.0"
@@ -1536,15 +1519,6 @@ chardet@^0.7.0:
 charenc@~0.0.1:
   version "0.0.2"
   resolved "https://registry.npmjs.org/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
-
-checkbox.react@^0.3.7:
-  version "0.3.11"
-  resolved "https://registry.npmjs.org/checkbox.react/-/checkbox.react-0.3.11.tgz#dcf77ae548036e8588f81a6ad7052af67ecd1608"
-  dependencies:
-    classnames "^2.2.5"
-    extend "^3.0.1"
-    prop-types "^15.6.0"
-    util.react "^1.4.1"
 
 chokidar@^1.4.3, chokidar@^1.7.0:
   version "1.7.0"
@@ -1606,7 +1580,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5, classnames@^2.2.6:
+classnames@^2.2.5:
   version "2.2.6"
   resolved "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
 
@@ -2080,18 +2054,6 @@ del@^3.0.0:
     p-map "^1.1.1"
     pify "^3.0.0"
     rimraf "^2.2.8"
-
-delay-console@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/delay-console/-/delay-console-0.4.0.tgz#c77e928e29763256781a261d5a419c44a739e845"
-  dependencies:
-    fecha "^2.3.3"
-    json-format "^1.0.1"
-    safe-extend "^3.0.4"
-
-delayeach@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/delayeach/-/delayeach-0.2.0.tgz#63c2d663bab4d79196995a461a73b02f45e37b85"
 
 delayed-stream@0.0.5:
   version "0.0.5"
@@ -2582,10 +2544,6 @@ fbjs@^0.8.16:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
-fecha@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/fecha/-/fecha-2.3.3.tgz#948e74157df1a32fd1b12c3a3c3cdcb6ec9d96cd"
-
 figures@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/figures/-/figures-2.0.0.tgz#3ab1a2d2a62c8bfb431a0c94cb797a2fce27c962"
@@ -2668,6 +2626,15 @@ find-up@^3.0.0:
   resolved "https://registry.npmjs.org/find-up/-/find-up-3.0.0.tgz#49169f1d7993430646da61ecc5ae355c21c97b73"
   dependencies:
     locate-path "^3.0.0"
+
+fis-livereload@^0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/fis-livereload/download/fis-livereload-0.1.0.tgz#285b4697019f7fdbb2ebb158a8e8e65234c01649"
+  dependencies:
+    hash-to-port "^1.0.0"
+    livereload "^0.7.0"
+    path-is-absolute "^1.0.1"
+    safe-extend "^3.0.5"
 
 fis-parser-less@^0.1.3:
   version "0.1.3"
@@ -3051,16 +3018,6 @@ highlight.js@^9.9.0:
   version "9.12.0"
   resolved "https://registry.npmjs.org/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
 
-history@^4.7.2:
-  version "4.7.2"
-  resolved "https://registry.npmjs.org/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
-  dependencies:
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    resolve-pathname "^2.2.0"
-    value-equal "^0.4.0"
-    warning "^3.0.0"
-
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -3171,12 +3128,6 @@ http-signature@~1.2.0:
 https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
-
-icon.react@^0.2.2, icon.react@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.npmjs.org/icon.react/-/icon.react-0.2.3.tgz#348b861689d235441fd4df773f3555951ebe7aff"
-  dependencies:
-    react-spread-props "^0.1.0"
 
 iconv-lite@0.4.19:
   version "0.4.19"
@@ -3305,7 +3256,7 @@ interpret@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
 
-invariant@^2.0.0, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.2.2:
   version "2.2.4"
   resolved "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
@@ -3543,10 +3494,6 @@ is-wsl@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
 
-isarray@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
-
 isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
@@ -3618,18 +3565,6 @@ jsesc@^2.5.1:
 jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.npmjs.org/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
-
-json-format@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/json-format/-/json-format-1.0.1.tgz#143f67e62af129d6bffed288a46265ea23d0df0c"
-
-json-modif@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/json-modif/-/json-modif-0.3.0.tgz#f10b3990e7173eb958598c0214669fcb57584181"
-  dependencies:
-    array-flatten "^2.1.1"
-    delay-console "^0.4.0"
-    safe-extend "^3.0.3"
 
 json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
@@ -3782,6 +3717,14 @@ livereload@^0.6.3:
     opts ">= 1.2.0"
     ws "^1.1.1"
 
+livereload@^0.7.0:
+  version "0.7.0"
+  resolved "http://registry.npm.taobao.org/livereload/download/livereload-0.7.0.tgz#38238dd155ffb251191697f737b6b13f471da115"
+  dependencies:
+    chokidar "^1.7.0"
+    opts ">= 1.2.0"
+    ws "^1.1.5"
+
 loader-fs-cache@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/loader-fs-cache/-/loader-fs-cache-1.0.1.tgz#56e0bf08bd9708b26a765b68509840c8dec9fdbc"
@@ -3815,10 +3758,6 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.17.5, lodash-es@^4.2.1:
-  version "4.17.10"
-  resolved "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
-
 lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.npmjs.org/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
@@ -3827,7 +3766,7 @@ lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
-lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1:
+lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.10"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -3843,7 +3782,7 @@ long@^3.2.0:
   version "3.2.0"
   resolved "https://registry.npmjs.org/long/-/long-3.2.0.tgz#d821b7138ca1cb581c172990ef14db200b5c474b"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1:
   version "1.4.0"
   resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
@@ -4586,12 +4525,6 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
 
-path-to-regexp@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
-  dependencies:
-    isarray "0.0.1"
-
 path@^0.12.7:
   version "0.12.7"
   resolved "https://registry.npmjs.org/path/-/path-0.12.7.tgz#d4dc2a506c4ce2197eb481ebfcd5b36c0140b10f"
@@ -4926,7 +4859,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^16.2.0, react-dom@^16.4.0:
+react-dom@^16.2.0:
   version "16.4.1"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
   dependencies:
@@ -4950,49 +4883,7 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-redux@^5.0.7:
-  version "5.0.7"
-  resolved "https://registry.npmjs.org/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
-  dependencies:
-    hoist-non-react-statics "^2.5.0"
-    invariant "^2.0.0"
-    lodash "^4.17.5"
-    lodash-es "^4.17.5"
-    loose-envify "^1.1.0"
-    prop-types "^15.6.0"
-
-react-router-dom@^4.2.2:
-  version "4.3.1"
-  resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"
-  dependencies:
-    history "^4.7.2"
-    invariant "^2.2.4"
-    loose-envify "^1.3.1"
-    prop-types "^15.6.1"
-    react-router "^4.3.1"
-    warning "^4.0.1"
-
-react-router@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.npmjs.org/react-router/-/react-router-4.3.1.tgz#aada4aef14c809cb2e686b05cee4742234506c4e"
-  dependencies:
-    history "^4.7.2"
-    hoist-non-react-statics "^2.5.0"
-    invariant "^2.2.4"
-    loose-envify "^1.3.1"
-    path-to-regexp "^1.7.0"
-    prop-types "^15.6.1"
-    warning "^4.0.1"
-
-react-spread-props@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.npmjs.org/react-spread-props/-/react-spread-props-0.1.1.tgz#c9802ad02eb6f9a6920ec2aac9a4966744db8530"
-  dependencies:
-    prop-types "^15.6.0"
-    safe-extend "^3.0.5"
-    util.react "^1.6.0"
-
-react@^16.2.0, react@^16.4.0:
+react@^16.2.0:
   version "16.4.1"
   resolved "https://registry.npmjs.org/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
@@ -5030,23 +4921,6 @@ recast@^0.11.17:
     esprima "~3.1.0"
     private "~0.1.5"
     source-map "~0.5.0"
-
-redux-devtools-extension@^2.13.2:
-  version "2.13.5"
-  resolved "https://registry.npmjs.org/redux-devtools-extension/-/redux-devtools-extension-2.13.5.tgz#3ff34f7227acfeef3964194f5f7fc2765e5c5a39"
-
-redux-thunk@^2.2.0:
-  version "2.3.0"
-  resolved "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
-
-redux@^3.7.2:
-  version "3.7.2"
-  resolved "https://registry.npmjs.org/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
-  dependencies:
-    lodash "^4.2.1"
-    lodash-es "^4.2.1"
-    loose-envify "^1.1.0"
-    symbol-observable "^1.0.3"
 
 regenerate-unicode-properties@^7.0.0:
   version "7.0.0"
@@ -5264,10 +5138,6 @@ resolve-from@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/resolve-from/-/resolve-from-3.0.0.tgz#b22c7af7d9d6881bc8b6e653335eebcb0a188748"
 
-resolve-pathname@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.npmjs.org/resolve-pathname/-/resolve-pathname-2.2.0.tgz#7e9ae21ed815fd63ab189adeee64dc831eefa879"
-
 resolve-url@^0.2.1:
   version "0.2.1"
   resolved "https://registry.npmjs.org/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
@@ -5328,7 +5198,7 @@ safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, s
   version "5.1.2"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
 
-safe-extend@^3.0.3, safe-extend@^3.0.4, safe-extend@^3.0.5:
+safe-extend@^3.0.5:
   version "3.0.5"
   resolved "https://registry.npmjs.org/safe-extend/-/safe-extend-3.0.5.tgz#986110b727009bea82c6c38811393d66f4751c8f"
   dependencies:
@@ -5774,23 +5644,6 @@ supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0:
   dependencies:
     has-flag "^3.0.0"
 
-symbol-observable@^1.0.3:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
-
-sync-state@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/sync-state/-/sync-state-0.1.0.tgz#8a4b0c1dc11ef9e1d77b54f22829fb4942743cc9"
-  dependencies:
-    extend "^3.0.1"
-
-table.react@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.npmjs.org/table.react/-/table.react-0.3.2.tgz#bfd9953a7dccc87f5df3f5dde316f1d1aa364a74"
-  dependencies:
-    prop-types "^15.6.0"
-    util.react "^1.4.1"
-
 tapable@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/tapable/-/tapable-1.0.0.tgz#cbb639d9002eed9c6b5975eb20598d7936f1f9f2"
@@ -5806,10 +5659,6 @@ tar@^4:
     mkdirp "^0.5.0"
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
-
-themes-classname@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/themes-classname/-/themes-classname-2.0.0.tgz#f61bacb4fe9dfdab9f617c3d16f98df3be97e313"
 
 through2@^2.0.0:
   version "2.0.3"
@@ -6060,28 +5909,6 @@ util.promisify@^1.0.0:
     define-properties "^1.1.2"
     object.getownpropertydescriptors "^2.0.3"
 
-util.react@^1.4.1, util.react@^1.6.0:
-  version "1.7.0"
-  resolved "https://registry.npmjs.org/util.react/-/util.react-1.7.0.tgz#6e336d6e1f66e42832d8f61d75d749166861c7fa"
-  dependencies:
-    classnames "^2.2.6"
-    themes-classname "^2.0.0"
-  optionalDependencies:
-    icon.react "^0.2.3"
-    react "^16.4.0"
-    react-dom "^16.4.0"
-
-util.react@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.npmjs.org/util.react/-/util.react-1.7.1.tgz#c60830dd6ea91357eccd0bc68917e91d2aa82251"
-  dependencies:
-    classnames "^2.2.6"
-    themes-classname "^2.0.0"
-  optionalDependencies:
-    icon.react "^0.2.3"
-    react "^16.4.0"
-    react-dom "^16.4.0"
-
 util@0.10.3:
   version "0.10.3"
   resolved "https://registry.npmjs.org/util/-/util-0.10.3.tgz#7afb1afe50805246489e3db7fe0ed379336ac0f9"
@@ -6105,10 +5932,6 @@ uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
 v8-compile-cache@^2.0.0:
   version "2.0.2"
   resolved "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.0.2.tgz#a428b28bb26790734c4fc8bc9fa106fccebf6a6c"
-
-value-equal@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/value-equal/-/value-equal-0.4.0.tgz#c5bdd2f54ee093c04839d71ce2e4758a6890abc7"
 
 vary@^1, vary@~1.1.2:
   version "1.1.2"
@@ -6163,18 +5986,6 @@ vue-template-es2015-compiler@^1.6.0:
 vue@2.5.17:
   version "2.5.17"
   resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
-
-warning@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
-  dependencies:
-    loose-envify "^1.0.0"
-
-warning@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.npmjs.org/warning/-/warning-4.0.1.tgz#66ce376b7fbfe8a887c22bdf0e7349d73d397745"
-  dependencies:
-    loose-envify "^1.0.0"
 
 watchpack@^1.5.0:
   version "1.6.0"
@@ -6378,7 +6189,7 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
-ws@^1.1.1:
+ws@^1.1.1, ws@^1.1.5:
   version "1.1.5"
   resolved "https://registry.npmjs.org/ws/-/ws-1.1.5.tgz#cbd9e6e75e09fc5d2c90015f21f0c40875e0dd51"
   dependencies:

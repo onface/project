@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 let compiler = webpack(require('./webpack.config.js'))
 const config = require('./getConfig.js')()
-compiler = config.user.webpackConfigDev(compiler)
 const path = require('path')
 const express = require('express')
 const app = express()

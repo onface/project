@@ -19,7 +19,7 @@ if (JSON.stringify(entryMap) === '{}') {
 	throw new Error(`compile/webpack.release.config.js: must have entry\r\n entry: ${JSON.stringify(config.user.release.entry)}`)
 }
 webpackConfig.entry = entryMap
-webpackConfig.output.publicPath = config.user.release[config.view].domain
+webpackConfig.output.publicPath = config.user.release.domain
 
 webpackConfig.plugins = [
 		new VueLoaderPlugin(),
@@ -32,23 +32,23 @@ webpackConfig.plugins = [
         })
     ].filter(function (item) {return item})
 let chunkHashName = ''
-if (config.user.release[config.view].hash) {
+if (config.user.release.hash) {
 	chunkHashName = '_[hash]'
 }
-if (config.user.release[config.view].compress) {
+if (config.user.release.compress) {
 	webpackConfig.optimization = {
 		minimizer: [
 			new UglifyJsPlugin({
 				cache: true,
-				sourceMap: Boolean(config.user.release[config.view].sourceMap)
+				sourceMap: Boolean(config.user.release.sourceMap)
 			})
 		]
 	}
 }
 webpackConfig.mode = 'production'
-webpackConfig.output.chunkFilename = `${config.viewPath}/__chunk/[id]${chunkHashName}${config.user.release[config.view].hash?'-[hash]':''}.js`
-webpackConfig.externals = config.user.release[config.view].externals
-if (config.user.release[config.view].sourceMap) {
-	webpackConfig.devtool = config.user.release[config.view].sourceMap
+webpackConfig.output.chunkFilename = `${config.viewPath}/__chunk/[id]${chunkHashName}${config.user.release.hash?'-[hash]':''}.js`
+webpackConfig.externals = config.user.release.externals
+if (config.user.release.sourceMap) {
+	webpackConfig.devtool = config.user.release.sourceMap
 }
-module.exports = config.user.webpackConfigRelease(webpackConfig)
+module.exports = webpackConfig

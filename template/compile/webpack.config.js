@@ -28,7 +28,7 @@ function filterName(file) {
 		pathName = config.viewPath + '/[path]'
 	}
 	var hashName = ''
-	if (config.user.release[config.view].hash) {
+	if (config.user.release.hash) {
 		hashName = '_[hash:7]'
 	}
 	return `${pathName}[name]${hashName}.[ext]`

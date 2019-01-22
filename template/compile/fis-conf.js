@@ -142,17 +142,11 @@ fis.match('**.html', {
  * livereload
  */
 fis.media('dev').match('*.{md,html}', {
-    postprocessor: function (content, file) {
-       if (fis.project.currentMedia() === 'dev') {
-           if (content.indexOf('onface-project-livereload') === -1) {
-               var livereloadScriptTag = `<script>
-                           document.write('<scr'+ 'ipt data-onface-project-livereload="true" src="${'http://127.0.0.1:' + config.livereloadServerPort + '/livereload.js?snipver=1'}"></scr' + 'ipt>')
-                       </script>`
-               content = content.replace(/<\/\s*body>/, livereloadScriptTag + '</body>')
-           }
-       }
-       return content
-   }
+    postprocessor: require('fis-livereload').create({
+        port: config.livereloadServerPort,
+        delay: 100,
+        exclusions: [/\\.git\//, /\\.svn\//, /\\.hg\//, /\.js/]
+    }, path.join(__dirname, '../output'))
 })
 /**
  * less
@@ -188,21 +182,21 @@ fis.media('release1')
         ]
     })
 fis.media('release3').match('**', {
-    useHash: config.user.release[config.view].hash,
-    domain: config.user.release[config.view].domain.replace(/\/$/,'')
+    useHash: config.user.release.hash,
+    domain: config.user.release.domain.replace(/\/$/,'')
 })
 
-config.user.release[config.view].hashIgnore.forEach(function (glob) {
+config.user.release.hashIgnore.forEach(function (glob) {
     fis.media('release3').match(glob, {
         useHash: false
     })
 })
-if (config.user.release[config.view].compress) {
+if (config.user.release.compress) {
     fis.media('release3').match('*.{css,less}', {
         optimizer: fis.plugin('clean-css')
     })
 }
-['{view,view_**}/**'].concat(config.user.release[config.view].unreleasable).forEach(function (item) {
+['{view,view_**}/**'].concat(config.user.release.unreleasable).forEach(function (item) {
     fis.media('release1').match(item, {
         release: false
     }, true)
@@ -212,7 +206,6 @@ fis.media('release1').match(`${config.viewPath}/**/**`, {
     release: true
 }, true)
 
-config.user.fis(fis)
 fis.media('release3').match('__chunk/**', {
     useHash: false
 }).match('__chunk/**', {

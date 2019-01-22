@@ -1,5 +1,4 @@
-require('jQuery/src/core.js')
-var $ = require('jQuery/src/ajax.js')
+var $ = require('jquery')
 $.ajax({
     url: '/some',
     data: {

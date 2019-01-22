@@ -9,39 +9,29 @@ module.exports = {
 	// 不需要 webpack 编译但是需要在页面使用 <script> 引用的文件
 	vendor: [
 		'm/base/rem/meta.js',
-		// 	vendor 中不要包含 md,如果一定要包含
-		// 	请删除  release[view].release.unreleasable 中的 md 匹配规则
-		'm/vendor/**/**!(.md)',
-		'm/vendor/**/**.html',
-		'm/vendor/**/**.js',
+		'm/vendor/**/**',
 	],
 	// 发布阶段配置
 	release: {
-		// view/**
-		default: {
-			domain: '/',
-			// 不会被编译到 output/ 目录的文件。
-			// （无法在html中加载文件调用，但可以在 css 中 import 或在 JS 中 import require)
-			// entry vendor 文件除外
-			unreleasable: [
-				'**.md',
-				'm/**/**.{less,css}'
-			],
-			hash: false,
-			hashIgnore: [ '**.html', 'fis-source-map.json' ],
-			relative: false,
-			compress:false,
-			sourceMap: 'source-map', // or false
-			externals: {
-			   'jquery': 'jQuery',
-			   'react': 'React',
-			   'react-dom': 'ReactDOM',
-			   'vue': 'Vue'
-			}
+		domain: '/',
+		// 不会被编译到 output/ 目录的文件。
+		// （无法在html中加载文件调用，但可以在 css 中 import 或在 JS 中 import require)
+		// entry vendor 文件除外
+		unreleasable: [
+			'**.md',
+			'm/**/**.{less,css}'
+		],
+		hash: false,
+		hashIgnore: [ '**.html', 'fis-source-map.json' ],
+		relative: false,
+		compress:false,
+		sourceMap: 'source-map', // or false
+		externals: {
+		   'jquery': 'jQuery',
+		   'react': 'React',
+		   'react-dom': 'ReactDOM',
+		   'vue': 'Vue'
 		}
-	},
-	moduleTemplateDefaultData:{
-		tpl: 'view',
 	},
 	less: {
 		plugins: [
@@ -57,7 +47,7 @@ module.exports = {
 			"@babel/preset-react"
 		],
 		"plugins": [
-			process.env.NODE_ENV !== 'production' ? "react-hot-loader/babel": undefined,
+			"react-hot-loader/babel",
 			"@babel/plugin-transform-runtime",
 		    "@babel/plugin-proposal-class-properties",
 		    "@babel/plugin-proposal-object-rest-spread",
@@ -65,16 +55,8 @@ module.exports = {
 		    ["@babel/plugin-proposal-decorators", { "legacy": true }]
 		]
 	},
-	fis: function (fis) {
-		// fis.match('*.css',
-		//   useSprite: true
-		// })
-	},
-	webpackConfigDev: function (webpackConfig) {
-		return webpackConfig
-	},
-	webpackConfigRelease: function (webpackConfig) {
-		return webpackConfig
+	moduleTemplateDefaultData:{
+		tpl: 'view',
 	},
 	ignore: [
 	    'm/template.html',
