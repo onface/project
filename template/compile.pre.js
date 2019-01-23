@@ -4,7 +4,7 @@ module.exports = {
 		default: {
 			hash: true,
 			compress: true,
-            sourceMap: false
+      sourceMap: false
 		}
 	}
 }

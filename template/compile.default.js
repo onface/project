@@ -73,3 +73,84 @@ module.exports = {
 		'doc/**'
 	]
 }
+
+// // compile.default.js
+// module.exports = function (config, info) {
+//   // webpack js 文件入口
+//   config.entry = {
+//     dev: `{view,m}/**/**entry.js`,
+//     release: `view/**/**entry.js`
+//   }
+//   // 编译哪些非 js 文件
+//   config.releasable = {
+//     dev: `{view,m}/**`,
+//     release: [
+//       `view/**`,
+//       `m/**/**.!(md|less|css|vue)`
+//     ]
+//   }
+//   // 不需要走webpack或 less 编译的第三方库文件
+//   config.vendor = [
+//     'm/base/rem/meta.js',
+//     'm/vendor/**'
+//   ]
+//   // 静态资源页面路径
+//   config.domain = {
+//     dev: '/',
+//     release: '/'
+//   }
+//   // 文件 hash 是否压缩 sourceMap
+//   config.release = {
+//     hash: false,
+//     compress: false,
+//     sourceMap: 'source-map'
+//   }
+//   // less 配置
+//   config.less = {
+//     plugins: [
+//         new LessPluginFunctions() ,
+//         new LessPluginAutoPrefix({
+//             browsers: ["not ie < 8"]
+//         })
+//     ]
+//   }
+//   // babel 配置
+//   config.babel = {
+//     "presets": [
+//       "@babel/preset-env",
+//       "@babel/preset-react"
+//     ],
+//     "plugins": [
+//       "react-hot-loader/babel",
+//       "@babel/plugin-transform-runtime",
+//         "@babel/plugin-proposal-class-properties",
+//         "@babel/plugin-proposal-object-rest-spread",
+//         "@babel/plugin-syntax-dynamic-import",
+//         ["@babel/plugin-proposal-decorators", { "legacy": true }]
+//     ]
+//   }
+//   // markrun 配置
+//   config.markrun = {
+//     templateDefaultData: {
+//       tpl: 'view'
+//     }
+//   }
+//   // 哪些文件永远不会编译
+//   config.ignore = [
+//     'm/template.html',
+//     '**.vue',
+//     '*.log',
+//     'deploy/**',
+//     'compile/**',
+//     'mock/**',
+//     'package.json',
+//     'nodemon.json',
+//     'yarn.lock',
+//     'Dockerfile',
+//     'output_release',
+//     'doc/**'
+//   ]
+//   return config
+// }
+// // webpack.config.js
+// // webpack.release.config.js
