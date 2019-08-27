@@ -55,7 +55,71 @@ fis.match('**.md', {
                 content,
                 {
                     templateDefaultData: config.user.moduleTemplateDefaultData,
-                    template: function (data) { return fs.readFileSync(path.join(__dirname, '../m/template.html')).toString() }
+                    template: function (data) { return fs.readFileSync(path.join(__dirname, '../m/template.html')).toString() },
+                    compile: {
+                        'code': function(data, options, info){
+                            data = json5.parse(data)
+                            data.lang = data.lang || data.file.replace(/.+\.(.+)$/,'$1') || 'js'
+                            var fullpath = path.join(path.dirname(info.filepath),data.file)
+                            info.deps = info.deps || []
+                            info.deps.push(fullpath)
+                            var code = fs.readFileSync(fullpath).toString()
+                            code = '<div class="markrun-source-pre" >' + markrun.markdownParserHighlight(code) + '</div>'
+                            if(typeof data.run === 'undefined'){
+                                data.run = true
+                            }
+                            if(data.run){
+                                switch(data.lang) {
+                                    case 'js':
+                                        code = code +'<script data-markrun-lastrun="true" src="'+ data.file + '"></scr' + 'ipt>'
+                                    break
+                                    case 'less':
+                                    case 'css':
+                                    case 'sass':
+                                        code = code + '<link rel="stylesheet" href="' + data.file + '"/>'
+                                    break
+                                }
+                            }
+                            return {
+                                lang: 'replace',
+                                code: code
+                            }
+                        },
+                        'less': function (source, data, info) {
+                            var code = ''
+                            less.render(
+                                source,
+                                { async: false },
+                                function (e, output) {
+                                    code = output.css
+                                }
+                            )
+                            return {
+                                lang: 'css',
+                                code: code ,
+                                source: source
+                            }
+                        },
+                        'html': function (code, data) {
+                            var source = code
+                            var classNames = util.getClassNames(source)
+                            source = source + '\n<!-- class:\n' + classNames.join(' {}\n') + ' {}\n-->'
+                            // source = source.replace(/class=/g,"className=")
+                            return {
+                                    lang: 'html',
+                                    code: code,
+                                    source: source
+                            }
+                        },
+                        'js' : function (source, data, info) {
+                            var code = babel.transform(source, config.user.babel).code
+                            return {
+                                lang: 'js',
+                                code: code,
+                                source: source
+                            }
+                        }
+                    }
                 },
                 {
                     filepath: file.fullname
